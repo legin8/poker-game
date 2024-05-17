@@ -1,0 +1,53 @@
+.cardBoarder {
+  border: 2px solid black;
+  border-radius: 16%;
+  width: 120px;
+  height: 200px;
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  background-color: bisque;
+}
+
+.cardNnSTop {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.cardNnSBottom {
+  display: flex;
+  flex-direction: column-reverse;
+  width: auto;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
+.NnS {
+  font-weight: bold;
+  font-size: 26px;
+}
+
+p {
+  margin: 2px;
+}
+
+.D, .H {
+  color: red;
+}
+
+.S, .C {
+  color: black;
+}
+
+.cardPic {
+  height: 80px;
+  width: 50px;
+}
+
+.picDiv {
+  position: flex;
+  align-content: space-around;
+}
