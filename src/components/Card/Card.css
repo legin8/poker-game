@@ -8,6 +8,9 @@
   flex: 1;
   background-color: bisque;
 }
+.cardBoarder:hover {
+  background-color: honeydew;
+}
 
 .cardNnSTop {
   display: flex;

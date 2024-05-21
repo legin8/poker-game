@@ -1,11 +1,14 @@
-import { PlayerCards } from "./PlayerCards/PlayerCards"
+import { PokerContext } from "../../poker/Context"
+import { PlayerCards } from "./PlayerHand/PlayerHand"
 
 export const GameView = () => {
   return (
-    <div className="gameV">
-      <div className="playerCards">
-        <PlayerCards />
+    <PokerContext>
+      <div className="gameV">
+        <div className="playerCards">
+          <PlayerCards />
+        </div>
       </div>
-    </div>
+    </PokerContext>
   )
 }
