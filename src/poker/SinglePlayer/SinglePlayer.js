@@ -1,7 +1,7 @@
 import "./SinglePlayer.css"
 import { GameView } from "../../components/GameView/GameView.js"
 
-export const SignlePlayer = () => {
+export const SinglePlayer = () => {
   return (
     <div className="singleP">
       <p>Back to startMenu</p>

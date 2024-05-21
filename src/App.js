@@ -1,8 +1,9 @@
 import { useState } from "react";
 import "./App.css";
 import { StartMenu } from "./poker/StartMenu/StartMenu.js";
-import { SignlePlayer } from "./poker/SinglePlayer/SinglePlayer.js";
+import { SinglePlayer } from "./poker/SinglePlayer/SinglePlayer.js";
 import { Online } from "./poker/Online/Online.js";
+import { PokerContext } from "./poker/Context.js";
 
 const gameStates = {
   startMenu: false,
@@ -22,10 +23,10 @@ export const App = () => {
 
   
   return (
-    <>
+    <PokerContext>
       {gamePlayState.startMenu && <StartMenu setter={setGamePlayState} objMaker={gameStateSetter} />}
-      {gamePlayState.singlePlayer && <SignlePlayer />}
+      {gamePlayState.singlePlayer && <SinglePlayer />}
       {gamePlayState.online && <Online />}
-    </>
+    </PokerContext>
   )
 }

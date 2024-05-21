@@ -4,7 +4,7 @@ import "./PlayerHand.css"
 
 const HAND_SIZE = 5;
 
-export const PlayerCards = () => {
+export const PlayerHand = () => {
   const { deck, setDeck } = useGameContext();
   
   const getPlayerHand = () => {
