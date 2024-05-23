@@ -16,7 +16,7 @@ export const PlayerHand = () => {
       const cardObj = originalDeck.splice(randIndex, 1);
       hand.push(...cardObj);
     }
-    console.log(deck.length);
+    
     setDeck(originalDeck);
     return hand;
   }
