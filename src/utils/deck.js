@@ -32,7 +32,6 @@ const shuffleDeck = (deck) => {
     const cardObj = deck.splice(randIndex, 1);
     newDeck.push(...cardObj);
   }
-  console.log(newDeck);
   return newDeck;
 }
 

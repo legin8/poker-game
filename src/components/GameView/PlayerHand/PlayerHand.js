@@ -16,7 +16,7 @@ export const PlayerHand = () => {
       const cardObj = originalDeck.splice(randIndex, 1);
       hand.push(...cardObj);
     }
-    console.log(hand);
+    console.log(deck.length);
     setDeck(originalDeck);
     return hand;
   }
@@ -25,8 +25,8 @@ export const PlayerHand = () => {
 
   return (
     <div className="playerHand">
-      {playerHand.map((c) => (
-      <Card number={c.number} suit={c.suit} />
+      {playerHand.map((c, i) => (
+      <Card number={c.number} suit={c.suit} key={i} />
       ))}
     </div>
   )

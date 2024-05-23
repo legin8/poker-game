@@ -1,32 +1,17 @@
-import { useState } from "react";
 import "./App.css";
 import { StartMenu } from "./poker/StartMenu/StartMenu.js";
 import { SinglePlayer } from "./poker/SinglePlayer/SinglePlayer.js";
 import { Online } from "./poker/Online/Online.js";
-import { PokerContext } from "./poker/Context.js";
-
-const gameStates = {
-  startMenu: false,
-  singlePlayer: false,
-  online: false,
-};
+import { useGameContext } from "./poker/Context.js";
 
 export const App = () => {
-  const gameStateSetter = (key) => {
-    return {
-      ...gameStates,
-      [key]: true,
-    }
-  }
-
-  const [gamePlayState, setGamePlayState] = useState(gameStateSetter("startMenu"));
-
-  
+  const {gamePlayState} = useGameContext();
+ 
   return (
-    <PokerContext>
-      {gamePlayState.startMenu && <StartMenu setter={setGamePlayState} objMaker={gameStateSetter} />}
+    <>
+      {gamePlayState.startMenu && <StartMenu />}
       {gamePlayState.singlePlayer && <SinglePlayer />}
       {gamePlayState.online && <Online />}
-    </PokerContext>
+    </>
   )
 }
