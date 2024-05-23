@@ -1,0 +1,20 @@
+.otherCard {
+    width: 3vw;
+    height: 10vh;
+    padding: 2px;
+    border: 2px solid black;
+    border-radius: 16%;
+    background-color: brown;
+}
+
+.left {
+    transform: rotate(90deg);
+}
+
+.right {
+    transform: rotate(-90deg);
+}
+
+.top {
+    transform: rotate(180deg);
+}

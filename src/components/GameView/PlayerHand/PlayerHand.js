@@ -1,8 +1,7 @@
 import { Card } from "../../Card/Card";
 import { useGameContext } from "../../../poker/Context";
 import "./PlayerHand.css"
-
-const HAND_SIZE = 5;
+import { HAND_SIZE } from "../../../utils/constants";
 
 export const PlayerHand = () => {
   const { deck, setDeck } = useGameContext();
