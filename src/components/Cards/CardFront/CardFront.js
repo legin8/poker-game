@@ -1,7 +1,7 @@
-import "./Card.css"
+import "./CardFront.css"
 import pic from "./card image.jpg"
 
-export const Card = ({number, suit}) => {
+export const CardFront = ({number, suit}) => {
   return (
     <div className="cardBoarder">
       <div className={`cardNnSTop ${suit} NnS`}>

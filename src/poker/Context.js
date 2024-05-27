@@ -1,5 +1,5 @@
 import { createContext, useState, useContext } from "react";
-import { newDeck } from "../utils/deck";
+import { newDeck } from "../utils/deckMaker";
 
 export const GameContext = createContext(null);
 

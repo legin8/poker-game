@@ -1,10 +1,5 @@
-const MAX_CARDS = 13
-const SUITS = {
-  hearts: "H",
-  dimonds: "D",
-  spades: "S",
-  clubs: "C",
-}
+import { MAX_CARDS } from "./constants";
+import { SUITS } from "./constants";
 
 // Makes the cards for a given suit.
 const cardsBySuits = (suitValue) => {

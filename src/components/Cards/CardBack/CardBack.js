@@ -1,5 +1,5 @@
 import pic from "./back of card.jpg";
-import "./OtherPlayerCard.css";
+import "./CardBack.css";
 
 export const OtherPlayerCard = ({side}) => {
     return (

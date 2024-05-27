@@ -1,7 +1,7 @@
 import "./SinglePlayer.css";
-import { GameView } from "../../components/GameView/GameView.js";
+import { PlayerArea } from "../../components/PlayerArea/PlayerArea.js";
 import { QuitButton } from "../../components/QuitButton/QuitButton.js";
-import { MainArea } from "../../components/GameView/MainArea/MainArea.js";
+import { MainArea } from "../../components/MainArea/MainArea.js";
 import { playType } from "../../utils/constants.js"
 
 export const SinglePlayer = () => {
@@ -9,7 +9,7 @@ export const SinglePlayer = () => {
     <div className="singleP">
       <QuitButton />
       <MainArea playType={playType.singlePlayer} />
-      <GameView />
+      <PlayerArea />
     </div>
   )
 }

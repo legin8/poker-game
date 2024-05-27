@@ -1,8 +1,9 @@
-import { OtherPlayerCard } from "../../../OtherPlayerCard/OtherPlayerCard.js";
+import { OtherPlayerCard } from "../../Cards/CardBack/CardBack.js";
+import "./OtherPlayerHand.css";
 
-export const OtherPlayerHand = ({ side }) => {
+export const OtherPlayerHand = ({ side, screen }) => {
     return (
-        <div>
+        <div className={screen}>
             <OtherPlayerCard side={side} />
             <OtherPlayerCard side={side} />
             <OtherPlayerCard side={side} />
