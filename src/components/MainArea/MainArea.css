@@ -1,13 +1,11 @@
 .mainArea {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-self: center;
     width: 100%;
     height: 100%;
     flex: 1;
 }
-
-.otherHand {
-    display: flex;
-    flex: 1;
+ 
+.cTop {
+    margin-top: 30px;
 }
