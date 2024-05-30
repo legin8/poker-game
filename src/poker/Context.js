@@ -13,6 +13,20 @@ const gameStates = {
   };
 
 export const PokerContext = ({ children }) => {
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
     const [deck, setDeck] = useState(newDeck());
     const gameStateSetter = (key) => {
         return {
@@ -23,11 +37,12 @@ export const PokerContext = ({ children }) => {
 
     const [gamePlayState, setGamePlayState] = useState(gameStateSetter("startMenu"));
     const [playingState, setPlayingState] = useState(PLAY_STATES);
+    const [usersCards, setUsersCards] = useState([]);
     
     
 
     return (
-        <GameContext.Provider value={{ deck, setDeck, gamePlayState, setGamePlayState, gameStateSetter, playingState, setPlayingState }}>
+        <GameContext.Provider value={{                           deck, setDeck, gamePlayState, setGamePlayState, gameStateSetter, playingState, setPlayingState, usersCards, setUsersCards }}>
             {children}
         </GameContext.Provider>
     )
