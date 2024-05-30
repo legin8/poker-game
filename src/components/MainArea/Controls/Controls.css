@@ -1,0 +1,15 @@
+.controls {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-self: center;
+}
+
+.controlButton {
+    font-size: 34px;
+    border-radius: 7%;
+}
+
+.controlButton:hover {
+    background-color: rosybrown;
+}

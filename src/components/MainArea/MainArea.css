@@ -8,4 +8,7 @@
  
 .cTop {
     margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }

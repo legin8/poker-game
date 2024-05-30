@@ -2,19 +2,23 @@
     flex-direction: column;
 }
 
+.screenLeft {
+    align-items: center;
+}
+
 .screenTop {
     flex-direction: row;
+    align-items: start;
+    gap: 30px;
 }
 
 .screenRight {
     flex-direction: column;
+    align-items: center;
 }
 
 .otherHand {
     display: flex;
     flex: 1; 
-    justify-content: center;
     margin: auto;
-    align-items: center;
-    gap: 10px;
 }

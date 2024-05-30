@@ -5,7 +5,7 @@ import { newDeck } from "../../utils/deckMaker";
 import { getFiveCards } from "../../utils/deckFunctions";
 
 export const PlayerArea = () => {
-  const { deck, setDeck } = useGameContext();
+  const { deck, setDeck, playingState } = useGameContext();
   const [ playerCards, setPlayerCards ] = useState([]);
 
   const getCards = () => {
@@ -15,10 +15,12 @@ export const PlayerArea = () => {
   }
 
   useEffect(() => {
-    getCards();
-
+    if (playingState.isPlaying && playerCards.length === 0) {
+      getCards();
+    }
+    
     return () => setDeck(newDeck());
-  }, []);
+  }, [playingState]);
   
   return (
     <div className="playerArea">
