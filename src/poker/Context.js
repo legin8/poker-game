@@ -13,7 +13,7 @@ const gameStates = {
   };
 
 export const PokerContext = ({ children }) => {
-  
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 
 
@@ -42,7 +42,7 @@ export const PokerContext = ({ children }) => {
     
 
     return (
-        <GameContext.Provider value={{                           deck, setDeck, gamePlayState, setGamePlayState, gameStateSetter, playingState, setPlayingState, usersCards, setUsersCards }}>
+        <GameContext.Provider value={{ isLoggedIn, setIsLoggedIn,                          deck, setDeck, gamePlayState, setGamePlayState, gameStateSetter, playingState, setPlayingState, usersCards, setUsersCards }}>
             {children}
         </GameContext.Provider>
     )

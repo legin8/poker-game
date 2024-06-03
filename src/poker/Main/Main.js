@@ -1,10 +1,11 @@
-import { NavBar } from "./NavBar/NavBar"
+import { NavBar } from "./NavBar/NavBar";
+import { MainContent } from "./MainContent/MainContent";
 
 export const Main = () => {
     return (
         <div className="mainPage">
             <NavBar />
-            <p>Other stuff</p>
+            <MainContent />
         </div>
     )
 }

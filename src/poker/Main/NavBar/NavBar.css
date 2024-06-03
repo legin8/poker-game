@@ -1,21 +1,6 @@
 .navBar {
     display: flex;
     background-color: blueviolet;
-    height: 300px;
+    height: 100px;
     width: 100%;
-}
-
-.newGameButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 70px;
-    padding: 10px;
-    font-size: 30px;
-    border: solid 1px purple;
-    border-radius: 7%;
-}
-
-.newGameButton:hover {
-    background-color: cornflowerblue;
 }
