@@ -1,8 +1,3 @@
-export const playType = {
-    singlePlayer: "singlePlayer",
-    online: "online",
-}
-
 // The amount of cards that a player can have at a time.
 export const HAND_SIZE = 5;
 

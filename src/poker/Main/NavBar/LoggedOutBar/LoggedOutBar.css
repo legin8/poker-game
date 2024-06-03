@@ -3,6 +3,7 @@
     padding: 10px;
     border-radius: 7%;
     background-color: darkorchid;
+    font-size: 20px;
 }
 
 .authButton:hover {
