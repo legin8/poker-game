@@ -4,24 +4,25 @@ import { useGameContext } from "../../../Context";
 import { useState } from "react";
 
 export const LoggedOutBar = () => {
-    const {setContentError} = useGameContext();
-    const [anonLoggingIn, setAnonLoggingIn] = useState(false);
+    const {setContentError, userID} = useGameContext();
+    const [loggingIn, setLoggingIn] = useState(false);
+
     const anonSignIn = async () => {
         try {
-            setAnonLoggingIn(() => true)
+            setLoggingIn(() => true)
             anonSignInAccount();
             setContentError(() => false);
             
         } catch {
             setContentError(() => true);
         } finally {
-            setAnonLoggingIn(() => false);
+            setLoggingIn(() => false);
         }
     }
 
     return (
         <div className="loggedOutBar">
-            <input type="button" value={"Anon Login"} className="authButton" onClick={() => anonSignIn()} disabled={anonLoggingIn} />
+            <input type="button" value={"Anon Login"} className="authButton" onClick={() => anonSignIn()} disabled={loggingIn} />
         </div>
     )
 }

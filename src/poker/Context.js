@@ -1,6 +1,4 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { newDeck } from "../utils/deckMaker";
-import { PLAY_STATES } from "../utils/constants";
 import { authStateChecker } from "./firebase";
 
 export const GameContext = createContext(null);
@@ -14,13 +12,9 @@ const gameStates = {
   };
 
 export const PokerContext = ({ children }) => {
+  const [userID, setUserID] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [contentError, setContentError] = useState(false);
-  const [userID, setUserID] = useState("");
-
-
-
-
 
   useEffect(() => {
     authStateChecker((user) => {
@@ -36,22 +30,12 @@ export const PokerContext = ({ children }) => {
 
 
 
-    const [deck, setDeck] = useState(newDeck());
-    const gameStateSetter = (key) => {
-        return {
-          ...gameStates,
-          [key]: true,
-        }
-      }
-
-    const [gamePlayState, setGamePlayState] = useState(gameStateSetter("startMenu"));
-    const [playingState, setPlayingState] = useState(PLAY_STATES);
-    const [usersCards, setUsersCards] = useState([]);
+    // const [deck, setDeck] = useState(newDeck());
     
     
 
     return (
-        <GameContext.Provider value={{ userID, isLoggedIn, setIsLoggedIn, contentError, setContentError,                         deck, setDeck, gamePlayState, setGamePlayState, gameStateSetter, playingState, setPlayingState, usersCards, setUsersCards }}>
+        <GameContext.Provider value={{ userID, isLoggedIn, setIsLoggedIn, contentError, setContentError }}>
             {children}
         </GameContext.Provider>
     )

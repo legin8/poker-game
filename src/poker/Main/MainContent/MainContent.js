@@ -4,11 +4,13 @@ import { ErrorPage } from "./ErrorPage/ErrorPage";
 import { useGameContext } from "../../Context";
 
 export const MainContent = () => {
-    const {contentError} = useGameContext();
+    const {contentError, userID} = useGameContext();
+
+    const login = !contentError ? <NotLoggedIn />: <ErrorPage />
     return (
         <div className="mainContent">
-            {!contentError && <NotLoggedIn />}
-            {contentError && <ErrorPage />}
+            {console.log(userID)}
+            {!userID ? login: <p>You are logged in.</p>}
         </div>
     )
 }

@@ -11,8 +11,3 @@ export const SUITS = {
   spades: "S",
   clubs: "C",
 }
-
-// States of the game.
-export const PLAY_STATES = {
-  isPlaying: false,
-}
