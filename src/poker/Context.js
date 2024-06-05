@@ -5,15 +5,8 @@ export const GameContext = createContext(null);
 
 export const useGameContext = () => useContext(GameContext);
 
-const gameStates = {
-    startMenu: false,
-    singlePlayer: false,
-    online: false,
-  };
-
 export const PokerContext = ({ children }) => {
   const [userID, setUserID] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [contentError, setContentError] = useState(false);
 
   useEffect(() => {
@@ -27,15 +20,11 @@ export const PokerContext = ({ children }) => {
   }, []);
 
 
-
-
-
     // const [deck, setDeck] = useState(newDeck());
-    
-    
+        
 
     return (
-        <GameContext.Provider value={{ userID, isLoggedIn, setIsLoggedIn, contentError, setContentError }}>
+        <GameContext.Provider value={{ userID, contentError, setContentError }}>
             {children}
         </GameContext.Provider>
     )

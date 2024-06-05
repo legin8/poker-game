@@ -4,10 +4,11 @@ import { LoggedInBar } from "./LoggedInBar/LoggedInBar";
 import { LoggedOutBar } from "./LoggedOutBar/LoggedOutBar";
 
 export const NavBar = () => {
-    const { isLoggedIn } = useGameContext();
+    const { isLoggedIn, userID } = useGameContext();
     return (
         <div className="navBar">
-            {isLoggedIn ? <LoggedInBar />: <LoggedOutBar />}
+            {console.log(isLoggedIn)}
+            {userID ? <LoggedInBar />: <LoggedOutBar />}
         </div>
     )
 }

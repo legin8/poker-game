@@ -10,6 +10,10 @@ import {
     signInAnonymously(getAuth());
   };
 
+  export const userLogout = () => {
+    signOut(getAuth());
+  }
+
   export const authStateChecker = (callback) => {
     onAuthStateChanged(getAuth(), callback);
   };

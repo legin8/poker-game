@@ -1,0 +1,13 @@
+.logoutButton {
+  display: flex;
+  font-size: 22px;
+  background-color: darkorchid;
+  padding: 10px;
+  height: fit-content;
+  border: 1px solid black;
+  border-radius: 7%;
+}
+
+.logoutButton:hover {
+  background-color: bisque;
+}
