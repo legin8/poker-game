@@ -1,4 +1,4 @@
-.logoutButton {
+.controlButton {
   display: flex;
   font-size: 22px;
   background-color: darkorchid;
@@ -8,6 +8,6 @@
   border-radius: 7%;
 }
 
-.logoutButton:hover {
+.controlButton:hover {
   background-color: bisque;
 }

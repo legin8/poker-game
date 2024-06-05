@@ -1,11 +1,16 @@
 import "./LoggedInBar.css";
-import { LogoutButton } from "./LogoutButton/LogoutButton";
+import { ControlButton } from "../../../../components/ControlButton/ControlButton";
+import { userLogout } from "../../../firebase";
 
 export const LoggedInBar = () => {
+    const logoutHandler = () => {
+        userLogout();
+      }
+
     return (
         <div className="loggedInBar">
             <div className="newGameButton">Make New Game</div>
-            <LogoutButton />
+            <ControlButton handler={logoutHandler} title={"Log out"} />
         </div>
     )
 }
