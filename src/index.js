@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import { App } from './App';
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from './reportWebVitals';
 import { PokerContext } from './poker/Context';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './router/router';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <PokerContext>
-      <App />
+      <RouterProvider router={router} />
     </PokerContext>
   </React.StrictMode>
 );

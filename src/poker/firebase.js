@@ -6,7 +6,7 @@ import {
     signInAnonymously,
   } from "firebase/auth";
 
-  export const anonSignInAccount = () => {
+  export const anonSignIn = () => {
     signInAnonymously(getAuth());
   };
 
