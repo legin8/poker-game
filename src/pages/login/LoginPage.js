@@ -8,7 +8,7 @@ export const LoginPage = () => {
     const {userID} = useGameContext();
     const [loggingIn, setLoggingIn] = useState(false);
     const navigate = useNavigate();
-    console.log(userID);
+    
     const anonSignInHandler = async () => {
         try {
             setLoggingIn(true)

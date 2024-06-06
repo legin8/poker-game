@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { userLogout } from "../../poker/firebase";
 import { ControlButton } from "../ControlButton/ControlButton";
 import "./NavBar.css";
@@ -22,7 +22,7 @@ export const NavBar = () => {
     
     return (
         <div className="navBar">
-            <p>Thing 1</p>
+            <Link to={"/addgame"} className="linkButton">Add Game</Link>
             <p>Thing 2</p>
             <ControlButton handler={logoutHandler} title={"Log out"} />
         </div>

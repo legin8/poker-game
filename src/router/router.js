@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
-import { RootRedirect } from "../RootRedirect";
+import { RootRedirect } from "../poker/RootRedirect";
 import { LoginPage } from "../pages/login/LoginPage";
 import { HomePage } from "../pages/home/HomePage";
+import { AddGamePage } from "../pages/addGame/AddGamePage";
 
 export const router = createBrowserRouter([
     {
@@ -15,5 +16,9 @@ export const router = createBrowserRouter([
     {
         path: "/home",
         element: <HomePage />
+    },
+    {
+        path: "/addgame",
+        element: <AddGamePage />
     }
 ])
