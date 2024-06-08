@@ -3,18 +3,20 @@ import { createPokerGame } from "../../../poker/firebase";
 import { useGameContext } from "../../../poker/Context";
 
 export const AddGameContent = () => {
-  const [gameName, setGameName] = useState("");
+  // const [gameName, setGameName] = useState("");
+  let gameName = "";
   const [message, setMessage] = useState(null);
   const {userID} = useGameContext();
 
   const addGameHandler = async () => {
     try {
-      await createPokerGame(userID, {
+      console.log(gameName);
+      await createPokerGame({
         gameName,
         owner: userID,
       });
       setMessage(null);
-    } catch(e) {
+    } catch {
       setMessage("Something went wrong.");
     }
   }
@@ -22,7 +24,7 @@ export const AddGameContent = () => {
   return (
     <div>
       <label>Add Game</label>
-      <input type="text" onChange={(v) => setGameName(v.target.value)} />
+      <input type="text" onChange={(v) => gameName = v.target.value} />
       <input type="button" value={"Submit"} onClick={() => addGameHandler()} />
       {message && <p>{message}</p>}
     </div>

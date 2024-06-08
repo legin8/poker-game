@@ -22,6 +22,6 @@ import {
   };
 
   // Here data is setting the game name as a field only, returns nothing.
-  export const createPokerGame = async (userID, data) => {
+  export const createPokerGame = async (data) => {
     await addDoc(collection(db, `game/`), data);
   };
