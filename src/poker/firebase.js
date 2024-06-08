@@ -5,7 +5,8 @@ import {
     signOut,
     signInAnonymously,
   } from "firebase/auth";
-  import { addDoc, collection } from "firebase/firestore";
+  import { addDoc, collection, getDocs } from "firebase/firestore";
+  import { ROOT_PATH } from "../utils/constants";
 
   // Logs user in as anon, returns nothing.
   export const anonSignIn = () => {
@@ -23,5 +24,9 @@ import {
 
   // Here data is setting the game name as a field only, returns nothing.
   export const createPokerGame = async (data) => {
-    await addDoc(collection(db, `game/`), data);
+    await addDoc(collection(db, ROOT_PATH), data);
   };
+
+  export const getPokerGames = async () => {
+    return await getDocs(collection(db, ROOT_PATH));
+  }

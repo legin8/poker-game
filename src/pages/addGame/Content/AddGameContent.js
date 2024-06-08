@@ -3,7 +3,6 @@ import { createPokerGame } from "../../../poker/firebase";
 import { useGameContext } from "../../../poker/Context";
 
 export const AddGameContent = () => {
-  // const [gameName, setGameName] = useState("");
   let gameName = "";
   const [message, setMessage] = useState(null);
   const {userID} = useGameContext();

@@ -11,3 +11,5 @@ export const SUITS = {
   spades: "S",
   clubs: "C",
 }
+
+export const ROOT_PATH = "games";
