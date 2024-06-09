@@ -1,6 +1,6 @@
 import { useGameContext } from "../../../poker/Context";
 import { useEffect, useState } from "react";
-import { getPokerGames, subGames } from "../../../poker/firebase";
+import { subGames } from "../../../poker/firebase";
 import "./UserGameList.css";
 
 export const UserGameList = () => {
@@ -9,17 +9,7 @@ export const UserGameList = () => {
 
   const sortPokerGameData = (listData) => {
     listData = listData.docs.map((d) => d.data());
-    listData = listData.filter((d) => d.owner === userID);
     listData.length === 0 ? setUserGameList([{gameName: "No Games made yet"}]) : setUserGameList(listData);
-  }
-
-  const getUserGames = async () => {
-    try {
-      let listData = await getPokerGames();
-      sortPokerGameData(listData);
-    } catch {
-      setUserGameList(failedToGetList());
-    }
   }
 
   const failedToGetList = () => {
@@ -28,22 +18,28 @@ export const UserGameList = () => {
 
   const sub = () => {
     try {
-      subGames(sortPokerGameData);
+      subGames(userID, sortPokerGameData);
     } catch {
       setUserGameList(failedToGetList());
     }
   }
 
-  const listOfGames = userGameList.map((i, k) => <p key={k}>{i.gameName}</p>)
+  const listOfGames = userGameList.map((i, k) => {
+    return (
+      <div>
+        <p key={k}>{i.gameName}</p>
+        <button>Start</button>
+      </div>
+    )
+  })
 
   useEffect(() => {
-    getUserGames();
     return () => sub();
   }, []);
 
   return (
     <div>
-      {userGameList.length > 0 ? listOfGames: <p>Loading</p>}
+      {userGameList.length > 0 ? listOfGames: <p>Loading...</p>}
     </div>
   )
 }

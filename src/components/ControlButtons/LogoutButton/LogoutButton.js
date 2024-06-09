@@ -1,6 +1,6 @@
 import "./LogoutButton.css";
-import { useGameContext } from "../../poker/Context";
-import { userLogout } from "../../poker/firebase";
+import { useGameContext } from "../../../poker/Context";
+import { userLogout } from "../../../poker/firebase";
 
 export const LogoutButton = () => {
   const { setUserID } = useGameContext();

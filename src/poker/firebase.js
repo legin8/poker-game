@@ -5,7 +5,7 @@ import {
     signOut,
     signInAnonymously,
   } from "firebase/auth";
-  import { addDoc, collection, getDocs, onSnapshot } from "firebase/firestore";
+  import { addDoc, collection, onSnapshot, query, where } from "firebase/firestore";
   import { ROOT_PATH } from "../utils/constants";
 
 // Logs user in as anon, returns nothing.
@@ -18,6 +18,7 @@ export const userLogout = () => {
   signOut(getAuth());
 }
 
+// Checks to see if the user is logged in.
 export const authStateChecker = (callback) => {
   onAuthStateChanged(getAuth(), callback);
 };
@@ -27,11 +28,7 @@ export const createPokerGame = async (data) => {
   await addDoc(collection(db, ROOT_PATH), data);
 };
 
-// Gets all the games, retuns array of unfiltered data.
-export const getPokerGames = async () => {
-  return await getDocs(collection(db, ROOT_PATH));
-}
-
-export const subGames = async (callback) => {
-  return onSnapshot(collection(db, ROOT_PATH), callback);
+// Watches the games for any changes, returns only the docs that the current user is the owner of.
+export const subGames = async (userID, callback) => {
+  return onSnapshot(query(collection(db, ROOT_PATH), where("owner", "==", userID)), callback);
 }
