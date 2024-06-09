@@ -14,6 +14,7 @@ export const NavBar = () => {
     
     return (
         <div className="navBar">
+            <Link to={"/home"} className="linkButton">Home</Link>
             <Link to={"/addgame"} className="linkButton">Add Game</Link>
             <p>Join game</p>
             <LogoutButton />

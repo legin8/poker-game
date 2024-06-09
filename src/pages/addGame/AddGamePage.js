@@ -5,7 +5,7 @@ import { UserGameList } from "./Content/UserGameList";
 
 export const AddGamePage = () => {
   return (
-    <div>
+    <div className="addGamePage">
       <NavBar />
       <AddGameContent />
       <UserGameList />

@@ -1,0 +1,13 @@
+.addGameForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+
+.addGameButton {
+  padding: 10px;
+  font-size: 22px;
+}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createPokerGame } from "../../../poker/firebase";
 import { useGameContext } from "../../../poker/Context";
+import "./AddGameContent.css";
 
 export const AddGameContent = () => {
   let gameName = "";
@@ -21,11 +22,11 @@ export const AddGameContent = () => {
   }
 
   return (
-    <div>
-      <label>Add Game</label>
-      <input type="text" onChange={(v) => gameName = v.target.value} />
-      <input type="button" value={"Submit"} onClick={() => addGameHandler()} />
+    <form className="addGameForm">
+      <label>New Game Name</label>
+      <input type="text" placeholder="My new game" onChange={(v) => gameName = v.target.value} />
+      <input type="button" value={"AddGame"} className="addGameButton" onClick={() => addGameHandler()} />
       {message && <p>{message}</p>}
-    </div>
+    </form>
   )
 }
