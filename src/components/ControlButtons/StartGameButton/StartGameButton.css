@@ -1,0 +1,6 @@
+.startButton {
+  display: flex;
+  padding: 7px;
+  font-size: 22px;
+  border-radius: 7%;
+}

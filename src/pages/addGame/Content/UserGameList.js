@@ -1,14 +1,21 @@
 import { useGameContext } from "../../../poker/Context";
 import { useEffect, useState } from "react";
 import { subGames } from "../../../poker/firebase";
+import { StartGameButton } from "../../../components/ControlButtons/StartGameButton/StartGameButton";
 import "./UserGameList.css";
 
 export const UserGameList = () => {
   const {userID} = useGameContext();
   const [userGameList, setUserGameList] = useState([]);
 
-  const sortPokerGameData = (listData) => {
-    listData = listData.docs.map((d) => d.data());
+  const handlePokerListData = (listData) => {
+    listData = listData.docs.map((d) => {
+      return {
+        ...d.data(),
+        id: d.id,
+      }
+    });
+    console.log(listData);
     listData.length === 0 ? setUserGameList([{gameName: "No Games made yet"}]) : setUserGameList(listData);
   }
 
@@ -18,28 +25,32 @@ export const UserGameList = () => {
 
   const sub = () => {
     try {
-      subGames(userID, sortPokerGameData);
+      subGames(userID, handlePokerListData);
     } catch {
       setUserGameList(failedToGetList());
     }
   }
 
-  const listOfGames = userGameList.map((i, k) => {
-    return (
-      <div>
-        <p key={k}>{i.gameName}</p>
-        <button>Start</button>
-      </div>
-    )
-  })
+  const listOfGames = (
+    <ol className="gameListOuter">
+      {userGameList.map((i, k) => {
+        return (
+          <li key={k} className="gameListItem">
+            <p className="glistname">{i.gameName}</p>
+            <StartGameButton docID={i.id} />
+          </li>
+        )
+      })}
+    </ol>
+  );
 
   useEffect(() => {
     return () => sub();
   }, []);
 
   return (
-    <div>
-      {userGameList.length > 0 ? listOfGames: <p>Loading...</p>}
-    </div>
+    <>
+      {userGameList.length > 0 ? listOfGames: <li>Loading...</li>}
+    </>
   )
 }

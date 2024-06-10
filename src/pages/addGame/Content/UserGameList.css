@@ -1,0 +1,24 @@
+.gameListOuter {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  justify-content: space-evenly;
+}
+
+.gameListItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  width: 100%;
+  gap: 20px;
+}
+
+.glistname {
+  display: flex;
+  font-size: 18px;
+}

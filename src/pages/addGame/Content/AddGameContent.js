@@ -14,6 +14,7 @@ export const AddGameContent = () => {
       await createPokerGame({
         gameName,
         owner: userID,
+        gameStarted: false,
       });
       setMessage(null);
     } catch {
