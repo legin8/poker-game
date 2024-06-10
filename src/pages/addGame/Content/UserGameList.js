@@ -15,7 +15,7 @@ export const UserGameList = () => {
         id: d.id,
       }
     });
-    console.log(listData);
+    
     listData.length === 0 ? setUserGameList([{gameName: "No Games made yet"}]) : setUserGameList(listData);
   }
 

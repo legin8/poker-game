@@ -3,6 +3,7 @@ import { RootRedirect } from "../poker/RootRedirect";
 import { LoginPage } from "../pages/login/LoginPage";
 import { HomePage } from "../pages/home/HomePage";
 import { AddGamePage } from "../pages/addGame/AddGamePage";
+import { JoinGamePage } from "../pages/joinGame/JoinGamePage";
 
 export const router = createBrowserRouter([
     {
@@ -20,5 +21,9 @@ export const router = createBrowserRouter([
     {
         path: "/addgame",
         element: <AddGamePage />
+    },
+    {
+        path: "/joingame",
+        element: <JoinGamePage />
     }
 ])
