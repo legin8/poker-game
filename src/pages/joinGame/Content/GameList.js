@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { subGamesToJoin } from "../../../poker/firebase";
 
 export const GameList = () => {
-  const [gameList, setGameList] = useState([]);
+  const [gameList, setGameList] = useState([{isLoading: true}]);
 
-  const loading = <p>Loading</p>;
+  const loading = gameList.isLoading ? <p>Loading</p>: <p>No active games found.</p>;
   const list = gameList.length > 0 ? (
     <ol>
       {gameList.map((i, k) => <li key={k}>{i.gameName}</li>)}

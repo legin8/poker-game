@@ -1,12 +1,12 @@
 import { useGameContext } from "../../../poker/Context";
 import { useEffect, useState } from "react";
 import { subGames } from "../../../poker/firebase";
-import { StartGameButton } from "../../../components/ControlButtons/StartGameButton/StartGameButton";
+import { LookForPlayersButton } from "../../../components/ControlButtons/LookForPlayersButton/LookForPlayersButton.js";
 import "./UserGameList.css";
 
 export const UserGameList = () => {
   const {userID} = useGameContext();
-  const [userGameList, setUserGameList] = useState([]);
+  const [userGameList, setUserGameList] = useState([{isLoading: true}]);
 
   const handlePokerListData = (listData) => {
     listData = listData.docs.map((d) => {
@@ -16,7 +16,7 @@ export const UserGameList = () => {
       }
     });
     
-    listData.length === 0 ? setUserGameList([{gameName: "No Games made yet"}]) : setUserGameList(listData);
+    listData.length === 0 ? setUserGameList([]) : setUserGameList(listData);
   }
 
   const failedToGetList = () => {
@@ -37,12 +37,14 @@ export const UserGameList = () => {
         return (
           <li key={k} className="gameListItem">
             <p className="glistname">{i.gameName}</p>
-            <StartGameButton docID={i.id} />
+            <LookForPlayersButton docID={i.id} />
           </li>
         )
       })}
     </ol>
   );
+
+  const emptyList = userGameList.isLoading ? <p>Loading...</p>: <p>No Games added yet.</p>;
 
   useEffect(() => {
     return () => sub();
@@ -50,7 +52,7 @@ export const UserGameList = () => {
 
   return (
     <>
-      {userGameList.length > 0 ? listOfGames: <li>Loading...</li>}
+      {userGameList.length > 0 ? listOfGames: emptyList}
     </>
   )
 }

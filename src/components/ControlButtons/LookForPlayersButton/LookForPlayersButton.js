@@ -1,7 +1,7 @@
 import { startGame } from "../../../poker/firebase";
-import "./StartGameButton.css";
+import "./LookForPlayersButton.css";
 
-export const StartGameButton = ({ docID }) => {
+export const LookForPlayersButton = ({ docID }) => {
   const startButtonHandler = () => {
     try {
       console.log(docID);
@@ -11,5 +11,5 @@ export const StartGameButton = ({ docID }) => {
     }
   }
 
-  return <button className="startButton" onClick={() => startButtonHandler()}>Start Game</button>
+  return <button className="startButton" onClick={() => startButtonHandler()}>Look For Players</button>
 }

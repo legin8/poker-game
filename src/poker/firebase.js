@@ -36,9 +36,9 @@ export const subGames = async (userID, callback) => {
 
 // Updates the gameStarted value to true, returns nothing, takes in the document ID.
 export const startGame = async (docID) => {
-  updateDoc(doc(db, "games", docID), { gameStarted: true });
+  updateDoc(doc(db, "games", docID), { isLookingForPlayers: true });
 }
 
 export const subGamesToJoin = async (callback) => {
-  return onSnapshot(query(collection(db, ROOT_PATH), where("gameStarted", "==", true)), callback);
+  return onSnapshot(query(collection(db, ROOT_PATH), where("isLookingForPlayers", "==", true)), callback);
 }
