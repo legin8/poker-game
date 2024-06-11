@@ -2,3 +2,10 @@ body {
   background-color: blanchedalmond;
   margin: 0px;
 }
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  list-style: none;
+}

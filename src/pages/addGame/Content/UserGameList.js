@@ -12,7 +12,7 @@ export const UserGameList = () => {
     listData = listData.docs.map((d) => {
       return {
         ...d.data(),
-        id: d.id,
+        docId: d.id,
       }
     });
     
@@ -37,7 +37,7 @@ export const UserGameList = () => {
         return (
           <li key={k} className="gameListItem">
             <p className="glistname">{i.gameName}</p>
-            <LookForPlayersButton docID={i.id} />
+            <LookForPlayersButton docID={i.docId} />
           </li>
         )
       })}

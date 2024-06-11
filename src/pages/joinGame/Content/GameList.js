@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { subGamesToJoin } from "../../../poker/firebase";
+import { JoinButton } from "./JoinButton";
 
 export const GameList = () => {
   const [gameList, setGameList] = useState([{isLoading: true}]);
@@ -7,15 +8,23 @@ export const GameList = () => {
   const loading = gameList.isLoading ? <p>Loading</p>: <p>No active games found.</p>;
   const list = gameList.length > 0 ? (
     <ol>
-      {gameList.map((i, k) => <li key={k}>{i.gameName}</li>)}
+      {gameList.map((i, k) => {
+        return (
+          <li key={k}>
+            <p>{i.gameName}</p>
+            <JoinButton docID={i.docID} />
+          </li>
+        )
+      })}
     </ol>
   ): <p>No Games to play yet.</p>;
 
   const makegameList = (gameListData) => {
     gameListData = gameListData.docs.map((i) => {
+      console.log(i.id)
       return {
         ...i.data(),
-        id: i.id,
+        docID: i.id,
       }
     });
     
