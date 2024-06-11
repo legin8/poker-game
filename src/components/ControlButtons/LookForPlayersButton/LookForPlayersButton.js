@@ -7,12 +7,13 @@ import { useGameContext } from "../../../poker/Context";
 export const LookForPlayersButton = ({ docID }) => {
   const [buttonTitle, setButtonTitle] = useState("Look For Players");
   const navigate = useNavigate();
-  const {userID} = useGameContext();
+  const {userID, setCurrentGameDocID} = useGameContext();
   const startButtonHandler = () => {
     try {
       startGame(docID);
       addPlayer(docID, userID);
       console.log(userID);
+      setCurrentGameDocID(docID);
       navigate("/lobby");
     } catch(e) {
       setButtonTitle("Try, Again");

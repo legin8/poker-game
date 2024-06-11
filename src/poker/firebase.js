@@ -49,6 +49,6 @@ export const addPlayer = (docID, userID) => {
   updateDoc(doc(db, ROOT_PATH, docID), {players: arrayUnion(userID)});
 }
 
-export const subPlayerCount = (docID) => {
-  onSnapshot(collection(db, `${ROOT_PATH}/${docID}`))
+export const subPlayerCount = (docID, callback) => {
+  return onSnapshot(doc(db, ROOT_PATH, docID), callback);
 }

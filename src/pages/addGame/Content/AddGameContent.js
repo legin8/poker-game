@@ -10,8 +10,8 @@ export const AddGameContent = () => {
 
   const addGameHandler = async () => {
     try {
-      console.log(gameName);
-      await createPokerGame({
+
+      createPokerGame({
         gameName,
         owner: userID,
         isLookingForPlayers: false,
@@ -26,7 +26,7 @@ export const AddGameContent = () => {
     <form className="addGameForm">
       <label>New Game Name</label>
       <input type="text" placeholder="My new game" onChange={(v) => gameName = v.target.value} />
-      <input type="button" value={"AddGame"} className="addGameButton" onClick={() => addGameHandler()} />
+      <input type="button" value={"Add Game"} className="addGameButton" onClick={() => addGameHandler()} />
       {message && <p>{message}</p>}
     </form>
   )
