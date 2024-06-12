@@ -10,18 +10,12 @@ export const JoinButton = ({ docID }) => {
 
     const joinHandler = () => {
         try {
-            console.log("start");
-            console.log(docID);
-            console.log(userID);
             addPlayer(docID, userID);
             setCurrentGameDocID(docID);
-            console.log("end");
-            console.log(currentGameDocID);
             navigate("/lobby");
         } catch(e) {
             console.log(e);
         }
-        console.log(currentGameDocID);
     }
     
     return <button onClick={() => joinHandler()}>{joinButtonText}</button>

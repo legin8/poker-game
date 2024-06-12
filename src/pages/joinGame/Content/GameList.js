@@ -21,7 +21,6 @@ export const GameList = () => {
 
   const makegameList = (gameListData) => {
     gameListData = gameListData.docs.map((i) => {
-      console.log(i.id)
       return {
         ...i.data(),
         docID: i.id,

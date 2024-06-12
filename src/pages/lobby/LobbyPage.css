@@ -1,0 +1,11 @@
+.lobbyPage {
+  display: flex;
+  height: 100dvh;
+  width: 100dvw;
+  align-items: center;
+  flex-direction: column;
+}
+
+.lobbyHeading {
+  font-size: 32px;
+}

@@ -44,11 +44,16 @@ export const subGamesToJoin = (callback) => {
   return onSnapshot(query(collection(db, ROOT_PATH), where("isLookingForPlayers", "==", true)), callback);
 }
 
-// Adds current player to a game, returns nothing, takes in document ID, current userID, and the data to set on the document.
+// Adds current player to a game, returns nothing, takes in document ID, current userID.
 export const addPlayer = (docID, userID) => {
   updateDoc(doc(db, ROOT_PATH, docID), {players: arrayUnion(userID)});
 }
 
+// Watches for changes to a specific document in the root, returns only the one doc, it takes the current doc ID and a callback.
 export const subPlayerCount = (docID, callback) => {
   return onSnapshot(doc(db, ROOT_PATH, docID), callback);
+}
+
+export const stopLookingForPlayers = (docID) => {
+  updateDoc(doc(db, ROOT_PATH, docID), {isLookingForPlayers: false});
 }

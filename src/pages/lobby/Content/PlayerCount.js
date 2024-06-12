@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useGameContext } from "../../../poker/Context";
-import { subPlayerCount } from "../../../poker/firebase";
+import { subPlayerCount, stopLookingForPlayers } from "../../../poker/firebase";
 import { useNavigate } from "react-router-dom";
 
 export const PlayerCount = () => {
@@ -11,14 +11,16 @@ export const PlayerCount = () => {
 
     const callback = (playerCount) => {
         try {
-            console.log(playerCount);
             playerCount = playerCount.data();
-            console.log(playerCount);
             setCurrentOwner(playerCount.owner);
             setPlayersInLobby(playerCount.players.length);
         } catch(e) {
             console.log(e);
             setPlayersInLobby("Failed to find players.");
+        } finally {
+            if (!playerCount.isLookingForPlayers) {
+                navigate("/game");
+            }
         }
     }
 
@@ -30,6 +32,16 @@ export const PlayerCount = () => {
         }
     }
 
+    const startButtonHandler = () => {
+        try {
+            stopLookingForPlayers(currentGameDocID);
+        } catch(e) {
+            console.log(e);
+        }
+        
+
+    }
+
     useEffect(() => {
         return sub();
     }, [])
@@ -37,9 +49,7 @@ export const PlayerCount = () => {
     return (
         <div>
             <p>{playersInLobby}</p>
-            {(currentOwner === userID) && playersInLobby > 1 ? <button>Start Game</button>: null}
-            {console.log(currentGameDocID)}
-            {console.log(userID)}
+            {(currentOwner === userID) && playersInLobby > 1 ? <button onClick={() => startButtonHandler()}>Start Game</button>: null}
         </div>
     )
 }
