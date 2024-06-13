@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export const PlayerCount = () => {
     const [playersInLobby, setPlayersInLobby] = useState("Loading");
-    const { currentGameDocID, userID, setTurnNum } = useGameContext();
+    const { currentGameDocID, userID } = useGameContext();
     const [ currentOwner, setCurrentOwner ] = useState(null);
     const navigate = useNavigate();
 
@@ -20,7 +20,6 @@ export const PlayerCount = () => {
             if (!playerCount.isLookingForPlayers) {
                 if (currentOwner === userID) setTurn(currentGameDocID, 0);
 
-                setTurnNum(playerCount.players.indexOf(userID));
                 navigate("/game");
             }
         }

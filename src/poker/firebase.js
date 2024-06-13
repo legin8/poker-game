@@ -54,6 +54,11 @@ export const setIsLookingForPlayers = (docID, isLooking) => {
   updateDoc(doc(db, ROOT_PATH, docID), {isLookingForPlayers: isLooking});
 }
 
+
 export const setTurn = (docID, index) => {
   updateDoc(doc(db, ROOT_PATH, docID), {turn: index});
+}
+
+export const subPlayingGame = (docID, callback) => {
+  return onSnapshot(doc(db, ROOT_PATH, docID), callback);
 }

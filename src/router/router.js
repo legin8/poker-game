@@ -5,7 +5,7 @@ import { HomePage } from "../pages/home/HomePage";
 import { AddGamePage } from "../pages/addGame/AddGamePage";
 import { JoinGamePage } from "../pages/joinGame/JoinGamePage";
 import { LobbyPage } from "../pages/lobby/LobbyPage";
-import { GamePage } from "../pages/game/gamePage";
+import { GamePage } from "../pages/game/GamePage";
 
 export const router = createBrowserRouter([
     {
