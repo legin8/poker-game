@@ -34,11 +34,6 @@ export const subGames = (userID, callback) => {
   return onSnapshot(query(collection(db, ROOT_PATH), where("owner", "==", userID)), callback);
 }
 
-// Updates the gameStarted value to true, returns nothing, takes in the document ID.
-export const startGame = (docID) => {
-  updateDoc(doc(db, ROOT_PATH, docID), { isLookingForPlayers: true });
-}
-
 // Watches for changes in games looking for players, returns only games looking for players, takes in a callback.
 export const subGamesToJoin = (callback) => {
   return onSnapshot(query(collection(db, ROOT_PATH), where("isLookingForPlayers", "==", true)), callback);
@@ -54,6 +49,11 @@ export const subPlayerCount = (docID, callback) => {
   return onSnapshot(doc(db, ROOT_PATH, docID), callback);
 }
 
-export const stopLookingForPlayers = (docID) => {
-  updateDoc(doc(db, ROOT_PATH, docID), {isLookingForPlayers: false});
+// Updates the isLookingForPlayers field, retuns nothing, takes the document ID and the value you want isLookingForPlayers to be.
+export const setIsLookingForPlayers = (docID, isLooking) => {
+  updateDoc(doc(db, ROOT_PATH, docID), {isLookingForPlayers: isLooking});
+}
+
+export const setTurn = (docID, index) => {
+  updateDoc(doc(db, ROOT_PATH, docID), {turn: index});
 }

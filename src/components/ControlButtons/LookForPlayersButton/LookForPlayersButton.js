@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addPlayer, startGame } from "../../../poker/firebase";
+import { addPlayer, setIsLookingForPlayers } from "../../../poker/firebase";
 import "./LookForPlayersButton.css";
 import { useNavigate } from "react-router-dom";
 import { useGameContext } from "../../../poker/Context";
@@ -10,8 +10,8 @@ export const LookForPlayersButton = ({ docID }) => {
   const {userID, setCurrentGameDocID} = useGameContext();
   const startButtonHandler = () => {
     try {
-      startGame(docID);
       addPlayer(docID, userID);
+      setIsLookingForPlayers(docID, true);
       console.log(userID);
       setCurrentGameDocID(docID);
       navigate("/lobby");

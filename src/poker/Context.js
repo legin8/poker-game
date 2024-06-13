@@ -8,6 +8,7 @@ export const useGameContext = () => useContext(GameContext);
 export const PokerContext = ({ children }) => {
   const [userID, setUserID] = useState(null);
   const [currentGameDocID, setCurrentGameDocID] = useState(null);
+  const [turnNum, setTurnNum] = useState(null);
 
   useEffect(() => {
     authStateChecker((user) => {
@@ -24,7 +25,7 @@ export const PokerContext = ({ children }) => {
         
 
     return (
-        <GameContext.Provider value={{ userID, setUserID, currentGameDocID, setCurrentGameDocID }}>
+        <GameContext.Provider value={{ userID, setUserID, currentGameDocID, setCurrentGameDocID, turnNum, setTurnNum }}>
             {children}
         </GameContext.Provider>
     )

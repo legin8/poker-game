@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useGameContext } from "../../../poker/Context";
-import { subPlayerCount, stopLookingForPlayers } from "../../../poker/firebase";
+import { subPlayerCount, setIsLookingForPlayers, setTurn } from "../../../poker/firebase";
 import { useNavigate } from "react-router-dom";
 
 export const PlayerCount = () => {
     const [playersInLobby, setPlayersInLobby] = useState("Loading");
-    const { currentGameDocID, userID } = useGameContext();
+    const { currentGameDocID, userID, setTurnNum } = useGameContext();
     const [ currentOwner, setCurrentOwner ] = useState(null);
     const navigate = useNavigate();
 
@@ -14,11 +14,13 @@ export const PlayerCount = () => {
             playerCount = playerCount.data();
             setCurrentOwner(playerCount.owner);
             setPlayersInLobby(playerCount.players.length);
-        } catch(e) {
-            console.log(e);
+        } catch {
             setPlayersInLobby("Failed to find players.");
         } finally {
             if (!playerCount.isLookingForPlayers) {
+                if (currentOwner === userID) setTurn(currentGameDocID, 0);
+
+                setTurnNum(playerCount.players.indexOf(userID));
                 navigate("/game");
             }
         }
@@ -34,12 +36,10 @@ export const PlayerCount = () => {
 
     const startButtonHandler = () => {
         try {
-            stopLookingForPlayers(currentGameDocID);
+            setIsLookingForPlayers(currentGameDocID, false);
         } catch(e) {
             console.log(e);
         }
-        
-
     }
 
     useEffect(() => {
