@@ -1,4 +1,4 @@
-import { PlayerHand } from "./Content/PlayerHand"
+import { PlayerHand } from "./Content/PlayerHand";
 
 export const GamePage = () => {
   return (

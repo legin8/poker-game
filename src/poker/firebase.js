@@ -6,7 +6,7 @@ import {
     signInAnonymously,
   } from "firebase/auth";
   import { addDoc, collection, onSnapshot, query, where, updateDoc, doc, arrayUnion } from "firebase/firestore";
-  import { ROOT_PATH } from "../utils/constants";
+  import { ROOT_PATH, STATE_OF_PLAY } from "../utils/constants";
 
 // Logs user in as anon, returns nothing.
 export const anonSignIn = () => {
@@ -57,6 +57,10 @@ export const setIsLookingForPlayers = (docID, isLooking) => {
 
 export const setTurn = (docID, index) => {
   updateDoc(doc(db, ROOT_PATH, docID), {turn: index});
+}
+
+export const setPhase = (docID) => {
+  updateDoc(doc(db, ROOT_PATH, docID), {phase: STATE_OF_PLAY.drawCards});
 }
 
 export const subPlayingGame = (docID, callback) => {
