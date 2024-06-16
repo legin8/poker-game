@@ -20,10 +20,7 @@ export const PlayerCount = () => {
             setPlayersInLobby("Failed to find players.");
         } finally {
             if (!playerCount.isLookingForPlayers) {
-                if (currentOwner === userID) {
-                    updateGameDoc(currentGameDocID, {turn: 0})
-                }
-
+                setDeck(newDeck());
                 navigate("/game");
             }
         }
@@ -42,8 +39,9 @@ export const PlayerCount = () => {
             updateGameDoc(currentGameDocID, {
                 phase: STATE_OF_PLAY.drawCards,
                 isLookingForPlayers: false,
-            })
-            setDeck(newDeck())
+                usedCards: [],
+                turn: 0,
+            });
         } catch(e) {
             console.log(e);
         }

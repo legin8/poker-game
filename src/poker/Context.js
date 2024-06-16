@@ -9,6 +9,7 @@ export const PokerContext = ({ children }) => {
   const [userID, setUserID] = useState(null);
   const [currentGameDocID, setCurrentGameDocID] = useState(null);
   const [deck, setDeck] = useState(null);
+  const [playersCards, setPlayersCards] = useState([]);
 
   useEffect(() => {
     authStateChecker((user) => {
@@ -21,7 +22,7 @@ export const PokerContext = ({ children }) => {
   }, []);        
 
   return (
-    <GameContext.Provider value={{ userID, setUserID, currentGameDocID, setCurrentGameDocID, deck, setDeck }}>
+    <GameContext.Provider value={{ userID, setUserID, currentGameDocID, setCurrentGameDocID, deck, setDeck, playersCards, setPlayersCards }}>
         {children}
     </GameContext.Provider>
   )

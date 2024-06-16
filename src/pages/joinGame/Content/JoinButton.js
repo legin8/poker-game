@@ -6,7 +6,7 @@ import { arrayUnion } from "firebase/firestore";
 
 export const JoinButton = ({ docID }) => {
     const [joinButtonText, setJoinButtonText] = useState("Join");
-    const {userID, setCurrentGameDocID, currentGameDocID} = useGameContext();
+    const {userID, setCurrentGameDocID} = useGameContext();
     const navigate = useNavigate();
 
     const joinHandler = () => {

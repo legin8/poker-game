@@ -5,7 +5,7 @@ import {
     signOut,
     signInAnonymously,
   } from "firebase/auth";
-  import { addDoc, collection, onSnapshot, query, where, updateDoc, doc, arrayUnion } from "firebase/firestore";
+  import { addDoc, collection, onSnapshot, query, where, updateDoc, doc } from "firebase/firestore";
   import { ROOT_PATH } from "../utils/constants";
 
 // Logs user in as anon, returns nothing.
@@ -51,4 +51,8 @@ export const subPlayingGame = (docID, callback) => {
 // Updates the given document, specified fields in the data, data must be a object.
 export const updateGameDoc = (docID, data) => {
   updateDoc(doc(db, ROOT_PATH, docID), data);
+}
+
+export const subGameDoc = (docID, callback) => {
+  return onSnapshot(doc(db, ROOT_PATH, docID), callback);
 }
