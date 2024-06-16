@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { addPlayer } from "../../../poker/firebase";
+import { updateGameDoc } from "../../../poker/firebase";
 import { useGameContext } from "../../../poker/Context";
 import { useNavigate } from "react-router-dom";
+import { arrayUnion } from "firebase/firestore";
 
 export const JoinButton = ({ docID }) => {
     const [joinButtonText, setJoinButtonText] = useState("Join");
@@ -10,11 +11,14 @@ export const JoinButton = ({ docID }) => {
 
     const joinHandler = () => {
         try {
-            addPlayer(docID, userID);
+            updateGameDoc(docID, {
+                players: arrayUnion(userID),
+            })
+
             setCurrentGameDocID(docID);
             navigate("/lobby");
-        } catch(e) {
-            console.log(e);
+        } catch {
+            setJoinButtonText("Try again");
         }
     }
     

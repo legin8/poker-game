@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useGameContext } from "../../../poker/Context";
-import { subPlayerCount, setIsLookingForPlayers, setTurn, setPhase } from "../../../poker/firebase";
+import { subPlayerCount, updateGameDoc } from "../../../poker/firebase";
 import { useNavigate } from "react-router-dom";
 import { newDeck } from "../../../utils/deckMaker";
+import { STATE_OF_PLAY } from "../../../utils/constants";
 
 export const PlayerCount = () => {
     const [playersInLobby, setPlayersInLobby] = useState("Loading");
@@ -20,7 +21,7 @@ export const PlayerCount = () => {
         } finally {
             if (!playerCount.isLookingForPlayers) {
                 if (currentOwner === userID) {
-                    setTurn(currentGameDocID, 0);
+                    updateGameDoc(currentGameDocID, {turn: 0})
                 }
 
                 navigate("/game");
@@ -38,8 +39,10 @@ export const PlayerCount = () => {
 
     const startButtonHandler = () => {
         try {
-            setIsLookingForPlayers(currentGameDocID, false);
-            setPhase(currentGameDocID);
+            updateGameDoc(currentGameDocID, {
+                phase: STATE_OF_PLAY.drawCards,
+                isLookingForPlayers: false,
+            })
             setDeck(newDeck())
         } catch(e) {
             console.log(e);

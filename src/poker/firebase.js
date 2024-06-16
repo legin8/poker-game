@@ -6,7 +6,7 @@ import {
     signInAnonymously,
   } from "firebase/auth";
   import { addDoc, collection, onSnapshot, query, where, updateDoc, doc, arrayUnion } from "firebase/firestore";
-  import { ROOT_PATH, STATE_OF_PLAY } from "../utils/constants";
+  import { ROOT_PATH } from "../utils/constants";
 
 // Logs user in as anon, returns nothing.
 export const anonSignIn = () => {
@@ -39,30 +39,16 @@ export const subGamesToJoin = (callback) => {
   return onSnapshot(query(collection(db, ROOT_PATH), where("isLookingForPlayers", "==", true)), callback);
 }
 
-// Adds current player to a game, returns nothing, takes in document ID, current userID.
-export const addPlayer = (docID, userID) => {
-  updateDoc(doc(db, ROOT_PATH, docID), {players: arrayUnion(userID)});
-}
-
 // Watches for changes to a specific document in the root, returns only the one doc, it takes the current doc ID and a callback.
 export const subPlayerCount = (docID, callback) => {
   return onSnapshot(doc(db, ROOT_PATH, docID), callback);
 }
 
-// Updates the isLookingForPlayers field, retuns nothing, takes the document ID and the value you want isLookingForPlayers to be.
-export const setIsLookingForPlayers = (docID, isLooking) => {
-  updateDoc(doc(db, ROOT_PATH, docID), {isLookingForPlayers: isLooking});
-}
-
-
-export const setTurn = (docID, index) => {
-  updateDoc(doc(db, ROOT_PATH, docID), {turn: index});
-}
-
-export const setPhase = (docID) => {
-  updateDoc(doc(db, ROOT_PATH, docID), {phase: STATE_OF_PLAY.drawCards});
-}
-
 export const subPlayingGame = (docID, callback) => {
   return onSnapshot(doc(db, ROOT_PATH, docID), callback);
+}
+
+// Updates the given document, specified fields in the data, data must be a object.
+export const updateGameDoc = (docID, data) => {
+  updateDoc(doc(db, ROOT_PATH, docID), data);
 }

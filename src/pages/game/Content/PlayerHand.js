@@ -11,9 +11,9 @@ export const PlayerHand = () => {
 
   const callback = (gameData) => {
     gameData = gameData.data();
-
+    console.log(gameData);
     if (gameData.turn === gameData.players.indexOf(userID)) {
-      if (stateOfPlay === STATE_OF_PLAY.drawCards) {
+      if (gameData.phase === STATE_OF_PLAY.drawCards) {
         console.log("start of draw cards");
         
         setDeck(removeCardsFromDeck(deck, [{number: 6, suit: 'C'}, {number: 4, suit: 'C'}]))
@@ -24,12 +24,12 @@ export const PlayerHand = () => {
         // add code to change turn here.
       }
 
-      if (stateOfPlay === STATE_OF_PLAY.swapCards) {
+      if (gameData.phase === STATE_OF_PLAY.swapCards) {
         console.log("start of swap Cards");
         // add code to tell user what to do.
       }
 
-      if (stateOfPlay === STATE_OF_PLAY.scoreCards) {
+      if (gameData.phase === STATE_OF_PLAY.scoreCards) {
         console.log("start of score cards");
         // add code to tell user who won.
       }
