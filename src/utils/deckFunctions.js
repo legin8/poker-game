@@ -1,10 +1,8 @@
-import { HAND_SIZE } from "./constants";
-
 // Takes cards out of the deck and returns the cards.
-export const getFiveCards = (deck) => {
+export const getCards = (deck, amount) => {
   let hand = [];
 
-  for (let i = 0; i < HAND_SIZE; i++) {
+  for (let i = 0; i < amount; i++) {
     const randIndex = Math.floor(Math.random() * deck.length);
     const cardObj = deck.splice(randIndex, 1);
     hand.push(...cardObj);
@@ -14,12 +12,12 @@ export const getFiveCards = (deck) => {
 }
 
 // Removes the given cards from the deck, returns the deck without the cards.
-export const removeCardsFromDeck = (deck, cardsToRemove) => {
+export const removeCards = (cards, cardsToRemove) => {
   for (let i = 0; i < cardsToRemove.length; i++) {
-    deck.splice(deck.findIndex((c) => {
+    cards.splice(cards.findIndex((c) => {
       return c.number === cardsToRemove[i].number && c.suit === cardsToRemove[i].suit;
     }), 1);
   }
 
-  return deck;
+  return cards;
 }

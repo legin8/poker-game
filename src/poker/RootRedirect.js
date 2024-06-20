@@ -1,8 +1,8 @@
-import { useGameContext } from "./Context";
 import { Navigate } from "react-router-dom";
+import { useAuthContext } from "./UserAuthContext";
 
 export const RootRedirect = () => {
-    const { userID } = useGameContext();
+    const { userID } = useAuthContext();
     
     return (
         <>

@@ -10,15 +10,20 @@ export const CardFront = ({number, suit}) => {
   const clickHandler = () => {
     const card = {number, suit};
 
+    // runs if you can add a card.
     if (cardsToSwap.length < 3 && !isSelected) {
       setIsSelected(true);
-      setCardsToSwap((v) => [...v, card]);
+      cardsToSwap.push(card);
     }
+
+    // runs if you unselect a card.
     if (isSelected) {
       setIsSelected(false);
+
       const index = cardsToSwap.findIndex((c) => {
         return card.number === c.number && card.suit === c.suit;
       });
+
       cardsToSwap.splice(index, 1);
     }
   }

@@ -1,15 +1,15 @@
-import { useGameContext } from "../../poker/Context";
+import { useAuthContext } from "../../poker/UserAuthContext";
 import { useEffect, useState } from "react";
 import { anonSignIn } from "../../poker/firebase";
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 
 export const LoginPage = () => {
-    const {userID} = useGameContext();
+    const { userID } = useAuthContext();
     const [loggingIn, setLoggingIn] = useState(false);
     const navigate = useNavigate();
     
-    const anonSignInHandler = async () => {
+    const anonSignInHandler = () => {
         try {
             setLoggingIn(true)
             anonSignIn();

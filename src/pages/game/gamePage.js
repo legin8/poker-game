@@ -3,22 +3,35 @@ import { PlayerHand } from "./Content/PlayerHand";
 import { useEffect, useState } from "react";
 import { useGameContext } from "../../poker/Context";
 import { STATE_OF_PLAY } from "../../utils/constants";
-import { removeCardsFromDeck } from "../../utils/deckFunctions";
-import { getFiveCards } from "../../utils/deckFunctions";
+import { removeCards } from "../../utils/deckFunctions";
+import { getCards } from "../../utils/deckFunctions";
+import { HAND_SIZE } from "../../utils/constants";
 import { arrayUnion } from "firebase/firestore";
+import { GameControls } from "./Content/GameControls";
+import "./GamePage.css";
+import { PokerContext } from "../../poker/Context";
+import { useAuthContext } from "../../poker/UserAuthContext";
 
 export const GamePage = () => {
-  const { currentGameDocID, userID, deck, setDeck } = useGameContext();
-  const [cards, setCards] = useState([]);
+  const { userID } = useAuthContext();
+  const { currentGameDocID, deck, setDeck, cardsToSwap, setCardsToSwap, gameMessage, setGameMessage, setGameState, cards, setCards, hasSwappedCards, setHasSwappedCards } = useGameContext();
 
   const callback = (gameData) => {
     gameData = gameData.data();
+
+    if (gameMessage === null || gameMessage.phase === STATE_OF_PLAY.drawCards) {
+      setGameMessage(`Player ${gameData.turn + 1} Drawing Cards`);
+      setGameState(STATE_OF_PLAY.drawCards);
+    }
+
     if (gameData.turn === gameData.players.indexOf(userID)) {
+      const isLastPlayer = gameData.turn + 1 === gameData.players.length;
+
       if (gameData.phase === STATE_OF_PLAY.drawCards) {
-        setDeck(removeCardsFromDeck(deck, gameData.usedCards));
-        const newCards = getFiveCards(deck);
+        setCardsToSwap([]);
+        setDeck(removeCards(deck, gameData.usedCards));
+        const newCards = getCards(deck, HAND_SIZE);
         setCards(newCards);
-        const isLastPlayer = gameData.turn + 1 === gameData.players.length;
         
         try {
           updateGameDoc(currentGameDocID, {
@@ -33,6 +46,23 @@ export const GamePage = () => {
 
       if (gameData.phase === STATE_OF_PLAY.swapCards) {
         console.log("start of swap Cards");
+        setDeck(removeCards(deck, gameData.usedCards));
+        setGameMessage("Pick upto 3 cards to swap");
+        setGameState(STATE_OF_PLAY.swapCards);
+
+        console.log(hasSwappedCards);
+        if (hasSwappedCards) {
+          try {
+            updateGameDoc(currentGameDocID, {
+              turn: isLastPlayer ? 0: gameData.turn + 1,
+              phase: isLastPlayer ? STATE_OF_PLAY.scoreCards: STATE_OF_PLAY.swapCards,
+            })
+          } catch(e) {
+            console.log(e);
+          }
+          
+        }
+
         // add code to tell user what to do.
       }
 
@@ -48,9 +78,12 @@ export const GamePage = () => {
   }, []);
 
   return (
-    <div>
-      <p>Game page</p>
-      <PlayerHand cards={cards} />
-    </div>
+    <PokerContext >
+      <div className="gamePage">
+        <p className="title">Game page</p>
+        <GameControls />
+        <PlayerHand />
+      </div>
+    </PokerContext>
   )
 }

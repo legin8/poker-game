@@ -3,10 +3,12 @@ import { updateGameDoc } from "../../../poker/firebase";
 import { useGameContext } from "../../../poker/Context";
 import { useNavigate } from "react-router-dom";
 import { arrayUnion } from "firebase/firestore";
+import { useAuthContext } from "../../../poker/UserAuthContext";
 
 export const JoinButton = ({ docID }) => {
     const [joinButtonText, setJoinButtonText] = useState("Join");
-    const {userID, setCurrentGameDocID} = useGameContext();
+    const { userID } = useAuthContext();
+    const { setCurrentGameDocID } = useGameContext();
     const navigate = useNavigate();
 
     const joinHandler = () => {

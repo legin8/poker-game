@@ -2,11 +2,12 @@ import { useState } from "react";
 import { createPokerGame } from "../../../poker/firebase";
 import { useGameContext } from "../../../poker/Context";
 import "./AddGameContent.css";
+import { useAuthContext } from "../../../poker/UserAuthContext";
 
 export const AddGameContent = () => {
   let gameName = "";
   const [message, setMessage] = useState(null);
-  const {userID} = useGameContext();
+  const { userID } = useAuthContext();
 
   const addGameHandler = async () => {
     try {

@@ -4,10 +4,12 @@ import { subPlayerCount, updateGameDoc } from "../../../poker/firebase";
 import { useNavigate } from "react-router-dom";
 import { newDeck } from "../../../utils/deckMaker";
 import { STATE_OF_PLAY } from "../../../utils/constants";
+import { useAuthContext } from "../../../poker/UserAuthContext";
 
 export const PlayerCount = () => {
     const [playersInLobby, setPlayersInLobby] = useState("Loading");
-    const { currentGameDocID, userID, setDeck } = useGameContext();
+    const { userID } = useAuthContext();
+    const { currentGameDocID, setDeck } = useGameContext();
     const [ currentOwner, setCurrentOwner ] = useState(null);
     const navigate = useNavigate();
 

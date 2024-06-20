@@ -1,28 +1,20 @@
-import { createContext, useState, useContext, useEffect } from "react";
-import { authStateChecker } from "./firebase";
+import { createContext, useState, useContext } from "react";
 
 export const GameContext = createContext(null);
 
 export const useGameContext = () => useContext(GameContext);
 
 export const PokerContext = ({ children }) => {
-  const [userID, setUserID] = useState(null);
   const [currentGameDocID, setCurrentGameDocID] = useState(null);
   const [deck, setDeck] = useState(null);
   const [cardsToSwap, setCardsToSwap] = useState([]);
-
-  useEffect(() => {
-    authStateChecker((user) => {
-      if (user) {
-        setUserID(user.uid);
-      } else {
-        setUserID(null);
-      }
-    });
-  }, []);        
+  const [gameMessage, setGameMessage] = useState(null);
+  const [gameState, setGameState] = useState(null);
+  const [cards, setCards] = useState([]);
+  const [hasSwappedCards, setHasSwappedCards] = useState(false);
 
   return (
-    <GameContext.Provider value={{ userID, setUserID, currentGameDocID, setCurrentGameDocID, deck, setDeck, cardsToSwap, setCardsToSwap }}>
+    <GameContext.Provider value={{ currentGameDocID, setCurrentGameDocID, deck, setDeck, cardsToSwap, setCardsToSwap, gameMessage, setGameMessage, gameState, setGameState, cards, setCards, hasSwappedCards, setHasSwappedCards }}>
         {children}
     </GameContext.Provider>
   )

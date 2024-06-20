@@ -1,11 +1,11 @@
-import { useGameContext } from "../../../poker/Context";
 import { useEffect, useState } from "react";
 import { subGames } from "../../../poker/firebase";
 import { LookForPlayersButton } from "../../../components/ControlButtons/LookForPlayersButton/LookForPlayersButton.js";
 import "./UserGameList.css";
+import { useAuthContext } from "../../../poker/UserAuthContext.js";
 
 export const UserGameList = () => {
-  const {userID} = useGameContext();
+  const { userID } = useAuthContext();
   const [userGameList, setUserGameList] = useState([{isLoading: true}]);
 
   const handlePokerListData = (listData) => {
