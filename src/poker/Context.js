@@ -3,7 +3,7 @@ import { newDeck } from "../utils/deckMaker";
 import { useAuthContext } from "./UserAuthContext";
 import { subGameDoc, updateGameDoc } from "./firebase";
 import { STATE_OF_PLAY, HAND_SIZE } from "../utils/constants";
-import { removeCards, getCards } from "../utils/deckFunctions";
+import { removeCards, getCards, sortHand } from "../utils/deckFunctions";
 import { arrayUnion } from "firebase/firestore";
 
 const GameContext = createContext(null);
@@ -32,7 +32,7 @@ export const PokerContext = ({ children }) => {
     if (gameData.turn === gameData.players.indexOf(userID)) {
       if (gameData.phase === STATE_OF_PLAY.drawCards) {
         removeCards(deck, gameData.usedCards);
-        const newCards = getCards(deck, HAND_SIZE);
+        const newCards = sortHand(getCards(deck, HAND_SIZE));
         setCards(newCards);
         
         try {
@@ -64,7 +64,7 @@ export const PokerContext = ({ children }) => {
     console.log("clicked");
     removeCards(cards, cardsToSwap);
     const newCards = getCards(deck, cardsToSwap.length);
-    setCards((d) => [ ...d, ...newCards]);
+    setCards((d) => sortHand([ ...d, ...newCards]));
     
     try {
         console.log(storedGameData);

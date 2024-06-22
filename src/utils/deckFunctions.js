@@ -21,3 +21,18 @@ export const removeCards = (cards, cardsToRemove) => {
 
   return cards;
 }
+
+export const sortHand = (cards) => {
+  return cards.sort((a, b) => {
+    if (a.number === 1 && b.number === 1) {
+      return 0
+    }
+    if (b.number === 1) {
+      return 1
+    }
+    if (a.number === 1) {
+      return -1
+    }
+    return b.number - a.number
+  });
+}

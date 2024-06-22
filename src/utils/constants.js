@@ -19,3 +19,7 @@ export const STATE_OF_PLAY = {
   swapCards: "swapCards",
   scoreCards: "scoreCards",
 }
+
+export const HIGH_RANKS = {
+  royalFlush: [1, 13, 12, 11, 10],
+}
