@@ -8,8 +8,8 @@ import { useAuthContext } from "../../../poker/UserAuthContext";
 
 export const PlayerCount = () => {
     const [playersInLobby, setPlayersInLobby] = useState("Loading");
-    const { userID } = useAuthContext();
-    const { currentGameDocID, setDeck } = useGameContext();
+    const { userID, gameDocID } = useAuthContext();
+    // const { setDeck } = useGameContext();
     const [ currentOwner, setCurrentOwner ] = useState(null);
     const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ export const PlayerCount = () => {
             setPlayersInLobby("Failed to find players.");
         } finally {
             if (!playerCount.isLookingForPlayers) {
-                setDeck(newDeck());
+                // setDeck(newDeck());
                 navigate("/game");
             }
         }
@@ -30,7 +30,7 @@ export const PlayerCount = () => {
 
     const sub = () => {
         try {
-            subPlayerCount(currentGameDocID, callback);
+            subPlayerCount(gameDocID, callback);
         } catch(e) {
             navigate("/");
         }
@@ -38,7 +38,7 @@ export const PlayerCount = () => {
 
     const startButtonHandler = () => {
         try {
-            updateGameDoc(currentGameDocID, {
+            updateGameDoc(gameDocID, {
                 phase: STATE_OF_PLAY.drawCards,
                 isLookingForPlayers: false,
                 usedCards: [],

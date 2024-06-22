@@ -7,6 +7,7 @@ export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthUserContext = ({ children }) => {
   const [userID, setUserID] = useState(null);
+  const [gameDocID, setGameDocID] = useState(null);
 
   useEffect(() => {
     authStateChecker((user) => {
@@ -19,7 +20,7 @@ export const AuthUserContext = ({ children }) => {
   }, []);        
 
   return (
-    <AuthContext.Provider value={{ userID, setUserID }}>
+    <AuthContext.Provider value={{ userID, setUserID, gameDocID, setGameDocID }}>
         {children}
     </AuthContext.Provider>
   )

@@ -2,15 +2,14 @@ import { useState } from "react";
 import { updateGameDoc } from "../../../poker/firebase";
 import "./LookForPlayersButton.css";
 import { useNavigate } from "react-router-dom";
-import { useGameContext } from "../../../poker/Context";
 import { arrayUnion } from "firebase/firestore";
 import { useAuthContext } from "../../../poker/UserAuthContext";
 
 export const LookForPlayersButton = ({ docID }) => {
   const [buttonTitle, setButtonTitle] = useState("Look For Players");
   const navigate = useNavigate();
-  const { userID } = useAuthContext();
-  const { setCurrentGameDocID } = useGameContext();
+  const { userID, setGameDocID } = useAuthContext();
+
   const startButtonHandler = () => {
     try {
       updateGameDoc(docID, {
@@ -18,7 +17,7 @@ export const LookForPlayersButton = ({ docID }) => {
         players: arrayUnion(userID),
       })
       
-      setCurrentGameDocID(docID);
+      setGameDocID(docID);
       navigate("/lobby");
     } catch {
       setButtonTitle("Try, Again");
