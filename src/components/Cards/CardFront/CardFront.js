@@ -5,7 +5,12 @@ import { useGameContext } from "../../../poker/Context";
 
 export const CardFront = ({number, suit}) => {
   const [isSelected, setIsSelected] = useState(false);
-  const { cardsToSwap, setCardsToSwap } = useGameContext();
+  const { cardsToSwap } = useGameContext();
+  let cardNumber = number;
+
+  if (number === 11) cardNumber = "J";
+  if (number === 12) cardNumber = "Q";
+  if (number === 13) cardNumber = "K";
 
   const clickHandler = () => {
     const card = {number, suit};
@@ -31,14 +36,14 @@ export const CardFront = ({number, suit}) => {
   return (
     <div className={`cardBoarder ${isSelected ? "selected": ""}`} onClick={() => clickHandler()}>
       <div className={`cardNnSTop ${suit} NnS`}>
-        <p>{number}</p>
+        <p>{cardNumber}</p>
         <p>{suit}</p>
       </div>
       <div className="picDiv">
         <img src={pic} className="cardPic" />
       </div>
       <div className={`cardNnSBottom ${suit} NnS`}>
-        <p>{number}</p>
+        <p>{cardNumber}</p>
         <p>{suit}</p>
       </div>
     </div>
