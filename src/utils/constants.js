@@ -17,7 +17,6 @@ export const ROOT_PATH = "games";
 export const STATE_OF_PLAY = {
   drawCards: "drawCards",
   swapCards: "swapCards",
-  scoreCards: "scoreCards",
   gameOver: "gameOver",
 };
 

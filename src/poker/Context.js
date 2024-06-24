@@ -21,14 +21,11 @@ export const PokerContext = ({ children }) => {
   const [storedGameData, setStoredGameData] = useState(null);
   const [isLastPlayer, setIsLastPlayer] = useState(null);
 
-  const getLocalCards = () => {
-    return cards;
-  };
-
   const callback = (gameData) => {
     gameData = gameData.data();
     setStoredGameData(gameData);
     const lastPlayer = gameData.turn + 1 === gameData.players.length;
+
     if (isLastPlayer !== lastPlayer)
       setIsLastPlayer(gameData.turn + 1 === gameData.players.length);
     if (gameData.phase === STATE_OF_PLAY.drawCards)
@@ -63,27 +60,27 @@ export const PokerContext = ({ children }) => {
         setGameMessage("Pick upto 3 cards to swap");
         setIsSwapTurn(true);
       }
+    }
 
-      if (gameData.phase === STATE_OF_PLAY.scoreCards) {
-        console.log("start of score cards");
-        // const temp = getLocalCards();
-        // console.log(temp);
-
-        // const score = getScore(cards);
-        // console.log(score);
-
-        // try {
-        //   updateGameDoc(gameDocID, {
-        //     turn: isLastPlayer ? 0: storedGameData.turn + 1,
-        //     score: arrayUnion({
-        //       userID: userID,
-        //       score,
-        //     }),
-        //     phase: isLastPlayer ? STATE_OF_PLAY.scoreCards: STATE_OF_PLAY.swapCards,
-        //   })
-        // } catch(e) {
-        //   console.log(e);
-        // }
+    if (gameData.phase === STATE_OF_PLAY.gameOver) {
+      console.log("start of game over");
+      const playerNumber = gameData.scores.findIndex((e) => e.player === userID);
+      const scores = gameData.scores.sort((a, b) => {
+        if (a.score < b.score) {
+          return -1;
+        }
+        if (a.score === b.score) {
+          return 0;
+        }
+        return 1;
+      });
+      
+      if (scores[0].score === scores[1].score) {
+        setGameMessage("Draw.");
+      } else if (scores[0].player === userID) {
+        setGameMessage(`You Wins.`);
+      } else {
+        setGameMessage(`You Lose, Player ${playerNumber + 1} Wins.`);
       }
     }
   };
@@ -99,7 +96,7 @@ export const PokerContext = ({ children }) => {
           usedCards: arrayUnion(...newCards),
           turn: isLastPlayer ? 0 : storedGameData.turn + 1,
           phase: isLastPlayer
-            ? STATE_OF_PLAY.scoreCards
+            ? STATE_OF_PLAY.gameOver
             : STATE_OF_PLAY.swapCards,
           scores: arrayUnion({
             player: userID,
@@ -113,17 +110,6 @@ export const PokerContext = ({ children }) => {
         return newSortedHand;
       }
     });
-
-    // try {
-    //     updateGameDoc(gameDocID, {
-    //         usedCards: arrayUnion(...newCards),
-    //         turn: isLastPlayer ? 0: storedGameData.turn + 1,
-    //         phase: isLastPlayer ? STATE_OF_PLAY.scoreCards: STATE_OF_PLAY.swapCards,
-    //     });
-    //     setIsSwapTurn(false);
-    // } catch(e) {
-    //     console.log(e);
-    // }
   };
 
   useEffect(() => {
