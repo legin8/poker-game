@@ -5,6 +5,7 @@ import { subGameDoc, updateGameDoc } from "./firebase";
 import { STATE_OF_PLAY, HAND_SIZE } from "../utils/constants";
 import { removeCards, getCards, sortHand } from "../utils/deckFunctions";
 import { arrayUnion } from "firebase/firestore";
+import { getScore } from "./scoring/scoring";
 
 const GameContext = createContext(null);
 
@@ -19,6 +20,10 @@ export const PokerContext = ({ children }) => {
   const [isSwapTurn, setIsSwapTurn] = useState(false);
   const [storedGameData, setStoredGameData] = useState(null);
   const [isLastPlayer, setIsLastPlayer] = useState(null);
+
+  const getLocalCards = () => {
+    return cards;
+  }
 
   const callback = (gameData) => {
     gameData = gameData.data();
@@ -55,29 +60,62 @@ export const PokerContext = ({ children }) => {
 
       if (gameData.phase === STATE_OF_PLAY.scoreCards) {
         console.log("start of score cards");
-        // add code to tell user who won.
+        // const temp = getLocalCards();
+        // console.log(temp);
+        
+        // const score = getScore(cards);
+        // console.log(score);
+
+        // try {
+        //   updateGameDoc(gameDocID, {
+        //     turn: isLastPlayer ? 0: storedGameData.turn + 1,
+        //     score: arrayUnion({
+        //       userID: userID,
+        //       score,
+        //     }),
+        //     phase: isLastPlayer ? STATE_OF_PLAY.scoreCards: STATE_OF_PLAY.swapCards,
+        //   })
+        // } catch(e) {
+        //   console.log(e);
+        // }
       }
     }
   }
 
   const swapHandler = () => {
-    console.log("clicked");
     removeCards(cards, cardsToSwap);
     const newCards = getCards(deck, cardsToSwap.length);
-    setCards((d) => sortHand([ ...d, ...newCards]));
-    
-    try {
-        console.log(storedGameData);
+    setCards((d) => {
+      const newSortedHand = sortHand([ ...d, ...newCards]);
+
+      try {
         updateGameDoc(gameDocID, {
             usedCards: arrayUnion(...newCards),
             turn: isLastPlayer ? 0: storedGameData.turn + 1,
             phase: isLastPlayer ? STATE_OF_PLAY.scoreCards: STATE_OF_PLAY.swapCards,
+            scores: arrayUnion({
+              player: userID,
+              score: getScore(newSortedHand),
+            })
         });
         setIsSwapTurn(false);
-        console.log("update end");
-    } catch(e) {
+      } catch(e) {
         console.log(e);
-    }
+      } finally {
+        return newSortedHand;
+      }
+    });
+    
+    // try {
+    //     updateGameDoc(gameDocID, {
+    //         usedCards: arrayUnion(...newCards),
+    //         turn: isLastPlayer ? 0: storedGameData.turn + 1,
+    //         phase: isLastPlayer ? STATE_OF_PLAY.scoreCards: STATE_OF_PLAY.swapCards,
+    //     });
+    //     setIsSwapTurn(false);
+    // } catch(e) {
+    //     console.log(e);
+    // }
   }
 
   useEffect(() => {
