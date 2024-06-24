@@ -10,5 +10,5 @@ export const AddGamePage = () => {
       <AddGameContent />
       <UserGameList />
     </div>
-  )
-}
+  );
+};

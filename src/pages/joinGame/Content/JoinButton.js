@@ -5,22 +5,22 @@ import { arrayUnion } from "firebase/firestore";
 import { useAuthContext } from "../../../poker/UserAuthContext";
 
 export const JoinButton = ({ docID }) => {
-    const [joinButtonText, setJoinButtonText] = useState("Join");
-    const { userID, setGameDocID } = useAuthContext();
-    const navigate = useNavigate();
+  const [joinButtonText, setJoinButtonText] = useState("Join");
+  const { userID, setGameDocID } = useAuthContext();
+  const navigate = useNavigate();
 
-    const joinHandler = () => {
-        try {
-            updateGameDoc(docID, {
-                players: arrayUnion(userID),
-            })
+  const joinHandler = () => {
+    try {
+      updateGameDoc(docID, {
+        players: arrayUnion(userID),
+      });
 
-            setGameDocID(docID);
-            navigate("/lobby");
-        } catch {
-            setJoinButtonText("Try again");
-        }
+      setGameDocID(docID);
+      navigate("/lobby");
+    } catch {
+      setJoinButtonText("Try again");
     }
-    
-    return <button onClick={() => joinHandler()}>{joinButtonText}</button>
-}
+  };
+
+  return <button onClick={() => joinHandler()}>{joinButtonText}</button>;
+};

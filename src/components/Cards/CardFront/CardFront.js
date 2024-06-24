@@ -3,7 +3,7 @@ import pic from "./card image.jpg";
 import { useState } from "react";
 import { useGameContext } from "../../../poker/Context";
 
-export const CardFront = ({number, suit}) => {
+export const CardFront = ({ number, suit }) => {
   const [isSelected, setIsSelected] = useState(false);
   const { cardsToSwap } = useGameContext();
   let cardNumber = number;
@@ -13,7 +13,7 @@ export const CardFront = ({number, suit}) => {
   if (number === 13) cardNumber = "K";
 
   const clickHandler = () => {
-    const card = {number, suit};
+    const card = { number, suit };
 
     // runs if you can add a card.
     if (cardsToSwap.length < 3 && !isSelected) {
@@ -31,10 +31,13 @@ export const CardFront = ({number, suit}) => {
 
       cardsToSwap.splice(index, 1);
     }
-  }
+  };
 
   return (
-    <div className={`cardBoarder ${isSelected ? "selected": ""}`} onClick={() => clickHandler()}>
+    <div
+      className={`cardBoarder ${isSelected ? "selected" : ""}`}
+      onClick={() => clickHandler()}
+    >
       <div className={`cardNnSTop ${suit} NnS`}>
         <p>{cardNumber}</p>
         <p>{suit}</p>
@@ -47,5 +50,5 @@ export const CardFront = ({number, suit}) => {
         <p>{suit}</p>
       </div>
     </div>
-  )
-}
+  );
+};

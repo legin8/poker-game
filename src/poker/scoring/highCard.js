@@ -8,4 +8,4 @@ export const highCard = (card) => {
     cardNumber = 14;
   }
   return highCardScore - cardNumber;
-}
+};

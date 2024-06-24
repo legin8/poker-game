@@ -17,7 +17,7 @@ export const isSameSuits = (cards) => {
   }
 
   return isSameSuits;
-}
+};
 
 const royalFlush = (cards) => {
   let isRoyalFlush = true;
@@ -29,7 +29,7 @@ const royalFlush = (cards) => {
   }
 
   return isRoyalFlush;
-}
+};
 
 const straightFlush = (cards) => {
   let counter = 0;
@@ -39,7 +39,7 @@ const straightFlush = (cards) => {
   }
 
   return counter === 4;
-}
+};
 
 export const flush = (cards) => {
   if (royalFlush(cards)) {
@@ -48,6 +48,6 @@ export const flush = (cards) => {
   if (straightFlush(cards)) {
     return straightFlushScore;
   }
-  
+
   return flushScore;
-}
+};

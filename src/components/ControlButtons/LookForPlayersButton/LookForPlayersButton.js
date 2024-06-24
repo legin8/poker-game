@@ -15,14 +15,18 @@ export const LookForPlayersButton = ({ docID }) => {
       updateGameDoc(docID, {
         isLookingForPlayers: true,
         players: arrayUnion(userID),
-      })
-      
+      });
+
       setGameDocID(docID);
       navigate("/lobby");
     } catch {
       setButtonTitle("Try, Again");
     }
-  }
+  };
 
-  return <button className="startButton" onClick={() => startButtonHandler()}>{buttonTitle}</button>
-}
+  return (
+    <button className="startButton" onClick={() => startButtonHandler()}>
+      {buttonTitle}
+    </button>
+  );
+};

@@ -8,5 +8,5 @@ export const JoinGamePage = () => {
       <NavBar />
       <GameList />
     </div>
-  )
-}
+  );
+};

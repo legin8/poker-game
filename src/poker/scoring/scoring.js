@@ -22,4 +22,4 @@ export const getScore = (cards) => {
   }
 
   return highCard(cards[0]);
-}
+};

@@ -6,10 +6,9 @@ import { router } from "./router/router";
 import { PokerContext } from "./poker/Context";
 
 export const App = () => {
- 
   return (
     <AuthUserContext>
       <RouterProvider router={router} />
     </AuthUserContext>
-  )
-}
+  );
+};

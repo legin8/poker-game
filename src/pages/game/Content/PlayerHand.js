@@ -7,8 +7,8 @@ export const PlayerHand = () => {
   return (
     <div className="playerHand">
       {cards.map((card, k) => {
-        return <CardFront key={k} number={card.number} suit={card.suit} />
+        return <CardFront key={k} number={card.number} suit={card.suit} />;
       })}
     </div>
-  )
-}
+  );
+};

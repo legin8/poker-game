@@ -23,31 +23,37 @@ export const PokerContext = ({ children }) => {
 
   const getLocalCards = () => {
     return cards;
-  }
+  };
 
   const callback = (gameData) => {
     gameData = gameData.data();
     setStoredGameData(gameData);
     const lastPlayer = gameData.turn + 1 === gameData.players.length;
-    if (isLastPlayer !== lastPlayer) setIsLastPlayer(gameData.turn + 1 === gameData.players.length);
-    if (gameData.phase === STATE_OF_PLAY.drawCards) setGameMessage(`Player ${gameData.turn + 1} Drawing Cards`);
-    if (gameData.phase === STATE_OF_PLAY.swapCards) setGameMessage(`Player ${gameData.turn + 1} turn to swap Cards`);
-    if (gameData.phase === STATE_OF_PLAY.scoreCards) setGameMessage("Checking hands.");
+    if (isLastPlayer !== lastPlayer)
+      setIsLastPlayer(gameData.turn + 1 === gameData.players.length);
+    if (gameData.phase === STATE_OF_PLAY.drawCards)
+      setGameMessage(`Player ${gameData.turn + 1} Drawing Cards`);
+    if (gameData.phase === STATE_OF_PLAY.swapCards)
+      setGameMessage(`Player ${gameData.turn + 1} turn to swap Cards`);
+    if (gameData.phase === STATE_OF_PLAY.scoreCards)
+      setGameMessage("Checking hands.");
 
     if (gameData.turn === gameData.players.indexOf(userID)) {
       if (gameData.phase === STATE_OF_PLAY.drawCards) {
         removeCards(deck, gameData.usedCards);
         const newCards = sortHand(getCards(deck, HAND_SIZE));
         setCards(newCards);
-        
+
         try {
           updateGameDoc(gameDocID, {
             usedCards: arrayUnion(...newCards),
-            turn: lastPlayer ? 0: gameData.turn + 1,
-            phase: lastPlayer ? STATE_OF_PLAY.swapCards: STATE_OF_PLAY.drawCards,
+            turn: lastPlayer ? 0 : gameData.turn + 1,
+            phase: lastPlayer
+              ? STATE_OF_PLAY.swapCards
+              : STATE_OF_PLAY.drawCards,
           });
         } catch {
-          setGameMessage("Something has gone very wrong.... sorry.")
+          setGameMessage("Something has gone very wrong.... sorry.");
         }
       }
 
@@ -62,7 +68,7 @@ export const PokerContext = ({ children }) => {
         console.log("start of score cards");
         // const temp = getLocalCards();
         // console.log(temp);
-        
+
         // const score = getScore(cards);
         // console.log(score);
 
@@ -80,32 +86,34 @@ export const PokerContext = ({ children }) => {
         // }
       }
     }
-  }
+  };
 
   const swapHandler = () => {
     removeCards(cards, cardsToSwap);
     const newCards = getCards(deck, cardsToSwap.length);
     setCards((d) => {
-      const newSortedHand = sortHand([ ...d, ...newCards]);
+      const newSortedHand = sortHand([...d, ...newCards]);
 
       try {
         updateGameDoc(gameDocID, {
-            usedCards: arrayUnion(...newCards),
-            turn: isLastPlayer ? 0: storedGameData.turn + 1,
-            phase: isLastPlayer ? STATE_OF_PLAY.scoreCards: STATE_OF_PLAY.swapCards,
-            scores: arrayUnion({
-              player: userID,
-              score: getScore(newSortedHand),
-            })
+          usedCards: arrayUnion(...newCards),
+          turn: isLastPlayer ? 0 : storedGameData.turn + 1,
+          phase: isLastPlayer
+            ? STATE_OF_PLAY.scoreCards
+            : STATE_OF_PLAY.swapCards,
+          scores: arrayUnion({
+            player: userID,
+            score: getScore(newSortedHand),
+          }),
         });
         setIsSwapTurn(false);
-      } catch(e) {
+      } catch (e) {
         console.log(e);
       } finally {
         return newSortedHand;
       }
     });
-    
+
     // try {
     //     updateGameDoc(gameDocID, {
     //         usedCards: arrayUnion(...newCards),
@@ -116,15 +124,28 @@ export const PokerContext = ({ children }) => {
     // } catch(e) {
     //     console.log(e);
     // }
-  }
+  };
 
   useEffect(() => {
     return subGameDoc(gameDocID, callback);
   }, []);
 
   return (
-    <GameContext.Provider value={{ deck, setDeck, cardsToSwap, setCardsToSwap, gameMessage, setGameMessage, isSwapTurn, cards, setCards, swapHandler }}>
-        {children}
+    <GameContext.Provider
+      value={{
+        deck,
+        setDeck,
+        cardsToSwap,
+        setCardsToSwap,
+        gameMessage,
+        setGameMessage,
+        isSwapTurn,
+        cards,
+        setCards,
+        swapHandler,
+      }}
+    >
+      {children}
     </GameContext.Provider>
-  )
-}
+  );
+};

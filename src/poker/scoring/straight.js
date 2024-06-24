@@ -8,4 +8,4 @@ export const straight = (cards) => {
   }
 
   return counter === 4;
-}
+};

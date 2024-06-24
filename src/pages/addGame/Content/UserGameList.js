@@ -6,22 +6,22 @@ import { useAuthContext } from "../../../poker/UserAuthContext.js";
 
 export const UserGameList = () => {
   const { userID } = useAuthContext();
-  const [userGameList, setUserGameList] = useState([{isLoading: true}]);
+  const [userGameList, setUserGameList] = useState([{ isLoading: true }]);
 
   const handlePokerListData = (listData) => {
     listData = listData.docs.map((d) => {
       return {
         ...d.data(),
         docId: d.id,
-      }
+      };
     });
-    
+
     listData.length === 0 ? setUserGameList([]) : setUserGameList(listData);
-  }
+  };
 
   const failedToGetList = () => {
-    return [{gameName: "Couldn't load, Check internet."}];
-  }
+    return [{ gameName: "Couldn't load, Check internet." }];
+  };
 
   const sub = () => {
     try {
@@ -29,7 +29,7 @@ export const UserGameList = () => {
     } catch {
       setUserGameList(failedToGetList());
     }
-  }
+  };
 
   const listOfGames = (
     <ol className="gameListOuter">
@@ -39,20 +39,20 @@ export const UserGameList = () => {
             <p className="glistname">{i.gameName}</p>
             <LookForPlayersButton docID={i.docId} />
           </li>
-        )
+        );
       })}
     </ol>
   );
 
-  const emptyList = userGameList.isLoading ? <p>Loading...</p>: <p>No Games added yet.</p>;
+  const emptyList = userGameList.isLoading ? (
+    <p>Loading...</p>
+  ) : (
+    <p>No Games added yet.</p>
+  );
 
   useEffect(() => {
     return () => sub();
   }, []);
 
-  return (
-    <>
-      {userGameList.length > 0 ? listOfGames: emptyList}
-    </>
-  )
-}
+  return <>{userGameList.length > 0 ? listOfGames : emptyList}</>;
+};

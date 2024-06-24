@@ -7,10 +7,17 @@ export const LogoutButton = () => {
   const { setUserID } = useAuthContext();
   const logoutHandler = () => {
     try {
-        userLogout();
+      userLogout();
     } catch {
-        setUserID(null);
+      setUserID(null);
     }
-  }
-  return <input type="button" value={"Log out"} className="logoutButton" onClick={() => logoutHandler()} />
-}
+  };
+  return (
+    <input
+      type="button"
+      value={"Log out"}
+      className="logoutButton"
+      onClick={() => logoutHandler()}
+    />
+  );
+};

@@ -5,12 +5,12 @@ import { PokerContext } from "../../poker/Context";
 
 export const GamePage = () => {
   return (
-    <PokerContext >
+    <PokerContext>
       <div className="gamePage">
         <p className="title">Game page</p>
         <GameControls />
         <PlayerHand />
       </div>
     </PokerContext>
-  )
-}
+  );
+};

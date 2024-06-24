@@ -15,29 +15,39 @@ export const hasSameNumber = (cards) => {
   }
 
   return isSameNumber;
-}
+};
 
 const fourOfAKind = (cards) => {
-  return (cards[0].number === cards[3].number) || (cards[1].number === cards[4].number);
-}
+  return (
+    cards[0].number === cards[3].number || cards[1].number === cards[4].number
+  );
+};
 
 const fullHouse = (cards) => {
-  const isThreeOfKind = cards[0].number === cards[2].number || cards[2].number === cards[4].number;
-  const isTwoOfKind = cards[0].number === cards[1].number && cards[3].number === cards[4].number;
+  const isThreeOfKind =
+    cards[0].number === cards[2].number || cards[2].number === cards[4].number;
+  const isTwoOfKind =
+    cards[0].number === cards[1].number && cards[3].number === cards[4].number;
   return isThreeOfKind && isTwoOfKind;
-}
+};
 
 const threeOfAKind = (cards) => {
-  return cards[0].number === cards[2].number ||
-  cards[1].number === cards[3].number ||
-  cards[2].number === cards[4].number;
-}
+  return (
+    cards[0].number === cards[2].number ||
+    cards[1].number === cards[3].number ||
+    cards[2].number === cards[4].number
+  );
+};
 
 const twoPair = (cards) => {
-  return (cards[0].number === cards[1].number && cards[2].number === cards[3].number) ||
-  (cards[1].number === cards[2].number && cards[3].number === cards[4].number) ||
-  (cards[0].number === cards[1].number && cards[3].number === cards[4].number);
-}
+  return (
+    (cards[0].number === cards[1].number &&
+      cards[2].number === cards[3].number) ||
+    (cards[1].number === cards[2].number &&
+      cards[3].number === cards[4].number) ||
+    (cards[0].number === cards[1].number && cards[3].number === cards[4].number)
+  );
+};
 
 export const kinds = (cards) => {
   if (fourOfAKind(cards)) {
@@ -54,4 +64,4 @@ export const kinds = (cards) => {
   }
 
   return pairScore;
-}
+};

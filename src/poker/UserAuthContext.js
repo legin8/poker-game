@@ -17,11 +17,13 @@ export const AuthUserContext = ({ children }) => {
         setUserID(null);
       }
     });
-  }, []);        
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ userID, setUserID, gameDocID, setGameDocID }}>
-        {children}
+    <AuthContext.Provider
+      value={{ userID, setUserID, gameDocID, setGameDocID }}
+    >
+      {children}
     </AuthContext.Provider>
-  )
-}
+  );
+};

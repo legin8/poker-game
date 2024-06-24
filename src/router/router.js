@@ -8,32 +8,32 @@ import { LobbyPage } from "../pages/lobby/LobbyPage";
 import { GamePage } from "../pages/game/GamePage";
 
 export const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <RootRedirect />
-    },
-    {
-        path: "/login",
-        element: <LoginPage/>
-    },
-    {
-        path: "/home",
-        element: <HomePage />
-    },
-    {
-        path: "/addgame",
-        element: <AddGamePage />
-    },
-    {
-        path: "/joingame",
-        element: <JoinGamePage />
-    },
-    {
-        path: "/lobby",
-        element: <LobbyPage />
-    },
-    {
-        path: "/game",
-        element: <GamePage />
-    }
-])
+  {
+    path: "/",
+    element: <RootRedirect />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/home",
+    element: <HomePage />,
+  },
+  {
+    path: "/addgame",
+    element: <AddGamePage />,
+  },
+  {
+    path: "/joingame",
+    element: <JoinGamePage />,
+  },
+  {
+    path: "/lobby",
+    element: <LobbyPage />,
+  },
+  {
+    path: "/game",
+    element: <GamePage />,
+  },
+]);

@@ -1,14 +1,14 @@
 .loginPage {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 100vw;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
 }
 
 .anonLogin {
-    font-size: 30px;
-    border-radius: 13%;
-    padding: 10px;
+  font-size: 30px;
+  border-radius: 13%;
+  padding: 10px;
 }

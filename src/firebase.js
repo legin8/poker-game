@@ -1,10 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import {
-    getFirestore,
-    initializeFirestore,
-    persistentLocalCache,
-  } from "firebase/firestore";
+  getFirestore,
+  initializeFirestore,
+  persistentLocalCache,
+} from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -17,10 +17,10 @@ const firebaseConfig = {
   storageBucket: "nem-poker-app.appspot.com",
   messagingSenderId: "609691316729",
   appId: "1:609691316729:web:559094f8cd516639730d28",
-  measurementId: "G-1MDGGRTWTW"
+  measurementId: "G-1MDGGRTWTW",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-initializeFirestore(app, { localCache: persistentLocalCache( {} ) });
+initializeFirestore(app, { localCache: persistentLocalCache({}) });
 export const db = getFirestore(app);

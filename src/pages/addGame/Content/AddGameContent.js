@@ -11,7 +11,6 @@ export const AddGameContent = () => {
 
   const addGameHandler = async () => {
     try {
-
       createPokerGame({
         gameName,
         owner: userID,
@@ -21,14 +20,23 @@ export const AddGameContent = () => {
     } catch {
       setMessage("Something went wrong.");
     }
-  }
+  };
 
   return (
     <form className="addGameForm">
       <label>New Game Name</label>
-      <input type="text" placeholder="My new game" onChange={(v) => gameName = v.target.value} />
-      <input type="button" value={"Add Game"} className="addGameButton" onClick={() => addGameHandler()} />
+      <input
+        type="text"
+        placeholder="My new game"
+        onChange={(v) => (gameName = v.target.value)}
+      />
+      <input
+        type="button"
+        value={"Add Game"}
+        className="addGameButton"
+        onClick={() => addGameHandler()}
+      />
       {message && <p>{message}</p>}
     </form>
-  )
-}
+  );
+};

@@ -36,11 +36,13 @@ p {
   margin: 2px;
 }
 
-.D, .H {
+.D,
+.H {
   color: red;
 }
 
-.S, .C {
+.S,
+.C {
   color: black;
 }
 

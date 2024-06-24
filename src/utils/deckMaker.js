@@ -5,10 +5,10 @@ import { SUITS } from "./constants";
 const cardsBySuits = (suitValue) => {
   let cards = [];
   for (let i = 1; i <= MAX_CARDS; i++) {
-    cards.push({number: i, suit: suitValue })
+    cards.push({ number: i, suit: suitValue });
   }
   return cards;
-}
+};
 
 // Makes a unshuffled deck.
 const makeDeck = () => {
@@ -17,7 +17,7 @@ const makeDeck = () => {
   const hearts = cardsBySuits(SUITS.hearts);
   const dimonds = cardsBySuits(SUITS.dimonds);
   return [...spades, ...clubs, ...hearts, ...dimonds];
-}
+};
 
 const shuffleDeck = (deck) => {
   let newDeck = [];
@@ -28,10 +28,10 @@ const shuffleDeck = (deck) => {
     newDeck.push(...cardObj);
   }
   return newDeck;
-}
+};
 
 // Returns a new shuffled deck.
 export const newDeck = () => {
   const deck = makeDeck();
   return shuffleDeck(deck);
-}
+};
