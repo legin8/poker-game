@@ -1,4 +1,4 @@
-import { CardFront } from "../../../components/Cards/CardFront/CardFront";
+import { CardFront } from "../../../components/CardFront/CardFront";
 import "./PlayerHand.css";
 import { useGameContext } from "../../../poker/Context";
 

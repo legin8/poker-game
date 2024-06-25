@@ -7,7 +7,7 @@ import { removeCards, getCards, sortHand } from "../utils/deckFunctions";
 import { arrayUnion } from "firebase/firestore";
 import { getScore } from "./scoring/scoring";
 
-const GameContext = createContext(null);
+export const GameContext = createContext(null);
 
 export const useGameContext = () => useContext(GameContext);
 
@@ -64,7 +64,9 @@ export const PokerContext = ({ children }) => {
 
     if (gameData.phase === STATE_OF_PLAY.gameOver) {
       console.log("start of game over");
-      const playerNumber = gameData.scores.findIndex((e) => e.player === userID);
+      const playerNumber = gameData.scores.findIndex(
+        (e) => e.player === userID,
+      );
       const scores = gameData.scores.sort((a, b) => {
         if (a.score < b.score) {
           return -1;
@@ -74,7 +76,7 @@ export const PokerContext = ({ children }) => {
         }
         return 1;
       });
-      
+
       if (scores[0].score === scores[1].score) {
         setGameMessage("Draw.");
       } else if (scores[0].player === userID) {

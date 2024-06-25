@@ -1,7 +1,7 @@
 import "./CardFront.css";
 import pic from "./card image.jpg";
 import { useState } from "react";
-import { useGameContext } from "../../../poker/Context";
+import { useGameContext } from "../../poker/Context";
 
 export const CardFront = ({ number, suit }) => {
   const [isSelected, setIsSelected] = useState(false);
@@ -37,10 +37,11 @@ export const CardFront = ({ number, suit }) => {
     <div
       className={`cardBoarder ${isSelected ? "selected" : ""}`}
       onClick={() => clickHandler()}
+      data-testid={`cardID-${suit}${number}`}
     >
       <div className={`cardNnSTop ${suit} NnS`}>
-        <p>{cardNumber}</p>
-        <p>{suit}</p>
+        <p data-testid={`cardNumber-${number}`}>{cardNumber}</p>
+        <p data-testid={`cardSuit-${suit}`}>{suit}</p>
       </div>
       <div className="picDiv">
         <img src={pic} className="cardPic" />
