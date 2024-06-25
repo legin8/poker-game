@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { LogoutButton } from "../ControlButtons/LogoutButton/LogoutButton";
 import "./NavBar.css";
 import { useEffect } from "react";
-import { useGameContext } from "../../poker/Context";
 import { useAuthContext } from "../../poker/UserAuthContext";
 
 export const NavBar = () => {

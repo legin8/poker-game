@@ -1,5 +1,4 @@
 import "./LogoutButton.css";
-import { useGameContext } from "../../../poker/Context";
 import { userLogout } from "../../../poker/firebase";
 import { useAuthContext } from "../../../poker/UserAuthContext";
 
@@ -14,6 +13,7 @@ export const LogoutButton = () => {
   };
   return (
     <input
+      data-testid={"logout"}
       type="button"
       value={"Log out"}
       className="logoutButton"

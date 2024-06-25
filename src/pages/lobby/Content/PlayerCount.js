@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
-import { useGameContext } from "../../../poker/Context";
 import { subPlayerCount, updateGameDoc } from "../../../poker/firebase";
 import { useNavigate } from "react-router-dom";
-import { newDeck } from "../../../utils/deckMaker";
 import { STATE_OF_PLAY } from "../../../utils/constants";
 import { useAuthContext } from "../../../poker/UserAuthContext";
 
 export const PlayerCount = () => {
   const [playersInLobby, setPlayersInLobby] = useState("Loading");
   const { userID, gameDocID } = useAuthContext();
-  // const { setDeck } = useGameContext();
   const [currentOwner, setCurrentOwner] = useState(null);
   const navigate = useNavigate();
 
@@ -22,7 +19,6 @@ export const PlayerCount = () => {
       setPlayersInLobby("Failed to find players.");
     } finally {
       if (!playerCount.isLookingForPlayers) {
-        // setDeck(newDeck());
         navigate("/game");
       }
     }

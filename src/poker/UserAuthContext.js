@@ -1,7 +1,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { authStateChecker } from "./firebase";
 
-const AuthContext = createContext(null);
+export const AuthContext = createContext(null);
 
 export const useAuthContext = () => useContext(AuthContext);
 

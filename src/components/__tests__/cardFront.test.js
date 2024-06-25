@@ -17,4 +17,5 @@ test("CardFront", () => {
     expect(screen.getByTestId(`cardID-${suit}${number}`));
     expect(screen.getByTestId(`cardNumber-${number}`));
     expect(screen.getByTestId(`cardSuit-${suit}`));
+    expect(screen.getByTestId(`cardID-${suit}${number}`)).toBeInTheDocument();
 });
