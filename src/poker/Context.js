@@ -15,7 +15,7 @@ export const PokerContext = ({ children }) => {
   const { userID, gameDocID } = useAuthContext();
   const [deck, setDeck] = useState(newDeck());
   const [cardsToSwap, setCardsToSwap] = useState([]);
-  const [gameMessage, setGameMessage] = useState("Loading...");
+  const [gameMessage, setGameMessage] = useState(<p>Loading...</p>);
   const [cards, setCards] = useState([]);
   const [isSwapTurn, setIsSwapTurn] = useState(false);
   const [storedGameData, setStoredGameData] = useState(null);
@@ -29,11 +29,11 @@ export const PokerContext = ({ children }) => {
     if (isLastPlayer !== lastPlayer)
       setIsLastPlayer(gameData.turn + 1 === gameData.players.length);
     if (gameData.phase === STATE_OF_PLAY.drawCards)
-      setGameMessage(`Player ${gameData.turn + 1} Drawing Cards`);
+      setGameMessage(<p>{`Player ${gameData.turn + 1} Drawing Cards`}</p>);
     if (gameData.phase === STATE_OF_PLAY.swapCards)
-      setGameMessage(`Player ${gameData.turn + 1} turn to swap Cards`);
+      setGameMessage(<p>{`Player ${gameData.turn + 1} turn to swap Cards`}</p>);
     if (gameData.phase === STATE_OF_PLAY.scoreCards)
-      setGameMessage("Checking hands.");
+      setGameMessage(<p>Checking hands.</p>);
 
     if (gameData.turn === gameData.players.indexOf(userID)) {
       if (gameData.phase === STATE_OF_PLAY.drawCards) {
@@ -50,14 +50,14 @@ export const PokerContext = ({ children }) => {
               : STATE_OF_PLAY.drawCards,
           });
         } catch {
-          setGameMessage("Something has gone very wrong.... sorry.");
+          setGameMessage(<p>Something has gone very wrong.... sorry.</p>);
         }
       }
 
       if (gameData.phase === STATE_OF_PLAY.swapCards) {
         console.log("start of swap Cards");
         removeCards(deck, gameData.usedCards);
-        setGameMessage("Pick upto 3 cards to swap");
+        setGameMessage(<p>Pick upto 3 cards to swap</p>);
         setIsSwapTurn(true);
       }
     }
@@ -78,11 +78,11 @@ export const PokerContext = ({ children }) => {
       });
 
       if (scores[0].score === scores[1].score) {
-        setGameMessage("Draw.");
+        setGameMessage(<p>Draw.</p>);
       } else if (scores[0].player === userID) {
-        setGameMessage(`You Wins.`);
+        setGameMessage(<p>You Wins.</p>);
       } else {
-        setGameMessage(`You Lose, Player ${playerNumber + 1} Wins.`);
+        setGameMessage(<p>{`You Lose, Player ${playerNumber + 1} Wins.`}</p>);
       }
     }
   };

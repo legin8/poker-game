@@ -1,5 +1,16 @@
 import { getScore } from "../scoring/scoring";
-import { royalFlush, straightFlush, fourOfAKind, flush, fullHouse, straight, threeOfAKind, twoPairs, pair, highCard } from "../testHands";
+import {
+  royalFlush,
+  straightFlush,
+  fourOfAKind,
+  flush,
+  fullHouse,
+  straight,
+  threeOfAKind,
+  twoPairs,
+  pair,
+  highCard,
+} from "../testHands";
 
 test("socring tests", () => {
   expect(getScore(royalFlush)).toBe(1);
@@ -11,5 +22,5 @@ test("socring tests", () => {
   expect(getScore(threeOfAKind)).toBe(7);
   expect(getScore(twoPairs)).toBe(8);
   expect(getScore(pair)).toBe(9);
-  expect(getScore(highCard)).toBe(90)
-})
+  expect(getScore(highCard)).toBe(90);
+});

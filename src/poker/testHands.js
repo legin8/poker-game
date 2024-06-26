@@ -18,7 +18,7 @@ export const royalFlush = [
   {
     suit: "H",
     number: 10,
-  }
+  },
 ];
 
 export const straightFlush = [
@@ -41,7 +41,7 @@ export const straightFlush = [
   {
     suit: "H",
     number: 3,
-  }
+  },
 ];
 
 export const fourOfAKind = [
@@ -64,7 +64,7 @@ export const fourOfAKind = [
   {
     suit: "H",
     number: 3,
-  }
+  },
 ];
 
 export const fullHouse = [
@@ -87,7 +87,7 @@ export const fullHouse = [
   {
     suit: "H",
     number: 3,
-  }
+  },
 ];
 
 export const flush = [
@@ -110,7 +110,7 @@ export const flush = [
   {
     suit: "H",
     number: 2,
-  }
+  },
 ];
 
 export const straight = [
@@ -133,7 +133,7 @@ export const straight = [
   {
     suit: "H",
     number: 3,
-  }
+  },
 ];
 
 export const threeOfAKind = [
@@ -156,7 +156,7 @@ export const threeOfAKind = [
   {
     suit: "H",
     number: 3,
-  }
+  },
 ];
 
 export const twoPairs = [
@@ -179,7 +179,7 @@ export const twoPairs = [
   {
     suit: "S",
     number: 4,
-  }
+  },
 ];
 
 export const pair = [
@@ -202,7 +202,7 @@ export const pair = [
   {
     suit: "H",
     number: 3,
-  }
+  },
 ];
 
 export const highCard = [
@@ -225,5 +225,5 @@ export const highCard = [
   {
     suit: "C",
     number: 2,
-  }
+  },
 ];

@@ -30,6 +30,8 @@ export const removeCards = (cards, cardsToRemove) => {
 
 export const sortHand = (cards) => {
   return cards.sort((a, b) => {
+    console.log(a);
+    console.log(b);
     if (a.number === 1 && b.number === 1) {
       return 0;
     }

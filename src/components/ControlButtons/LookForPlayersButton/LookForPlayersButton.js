@@ -14,7 +14,7 @@ export const LookForPlayersButton = ({ docID }) => {
     try {
       updateGameDoc(docID, {
         isLookingForPlayers: true,
-        players: arrayUnion(userID),
+        players: [userID],
         scores: [],
         usedCards: [],
       });

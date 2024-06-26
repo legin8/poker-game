@@ -9,13 +9,14 @@ jest.mock("../../poker/firebase");
 jest.mock("../../poker/UserAuthContext");
 
 test("CardFront", () => {
-    render(
-    <GameContext.Provider value={{cardsToSwap: []}}>
-        <CardFront number={number} suit={suit} />
-    </GameContext.Provider>);
+  render(
+    <GameContext.Provider value={{ cardsToSwap: [] }}>
+      <CardFront number={number} suit={suit} />
+    </GameContext.Provider>,
+  );
 
-    expect(screen.getByTestId(`cardID-${suit}${number}`));
-    expect(screen.getByTestId(`cardNumber-${number}`));
-    expect(screen.getByTestId(`cardSuit-${suit}`));
-    expect(screen.getByTestId(`cardID-${suit}${number}`)).toBeInTheDocument();
+  expect(screen.getByTestId(`cardID-${suit}${number}`));
+  expect(screen.getByTestId(`cardNumber-${number}`));
+  expect(screen.getByTestId(`cardSuit-${suit}`));
+  expect(screen.getByTestId(`cardID-${suit}${number}`)).toBeInTheDocument();
 });

@@ -6,7 +6,7 @@ export const GameControls = () => {
 
   return (
     <div className="gameControls">
-      <p>{gameMessage}</p>
+      {gameMessage}
       {isSwapTurn && <button onClick={() => swapHandler()}>Swap</button>}
     </div>
   );
