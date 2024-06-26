@@ -6,6 +6,7 @@ import { STATE_OF_PLAY, HAND_SIZE } from "../utils/constants";
 import { removeCards, getCards, sortHand } from "../utils/deckFunctions";
 import { arrayUnion } from "firebase/firestore";
 import { getScore } from "./scoring/scoring";
+import { GameOverButton } from "../components/ControlButtons/GameOverButton/GameOverButton";
 
 export const GameContext = createContext(null);
 
@@ -78,11 +79,26 @@ export const PokerContext = ({ children }) => {
       });
 
       if (scores[0].score === scores[1].score) {
-        setGameMessage(<p>Draw.</p>);
+        setGameMessage(
+          <div>
+            <p>Draw.</p>
+            <GameOverButton />
+          </div>
+      );
       } else if (scores[0].player === userID) {
-        setGameMessage(<p>You Wins.</p>);
+        setGameMessage(
+          <div>
+            <p>You Wins.</p>
+            <GameOverButton />
+          </div>
+      );
       } else {
-        setGameMessage(<p>{`You Lose, Player ${playerNumber + 1} Wins.`}</p>);
+        setGameMessage(
+          <div>
+            <p>{`You Lose, Player ${playerNumber + 1} Wins.`}</p>
+            <GameOverButton />
+          </div>
+      );
       }
     }
   };
