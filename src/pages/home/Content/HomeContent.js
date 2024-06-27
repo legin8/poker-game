@@ -1,7 +1,7 @@
 export const HomeContent = () => {
   return (
     <div>
-      <p>Welcome to Poker.</p>
+      <p data-testid="hcText">Welcome to Poker.</p>
     </div>
   );
 };

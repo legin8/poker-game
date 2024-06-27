@@ -2,7 +2,6 @@ import { useState } from "react";
 import { updateGameDoc } from "../../../poker/firebase";
 import "./LookForPlayersButton.css";
 import { useNavigate } from "react-router-dom";
-import { arrayUnion } from "firebase/firestore";
 import { useAuthContext } from "../../../poker/UserAuthContext";
 
 export const LookForPlayersButton = ({ docID }) => {
@@ -27,7 +26,7 @@ export const LookForPlayersButton = ({ docID }) => {
   };
 
   return (
-    <button className="startButton" onClick={() => startButtonHandler()}>
+    <button className="startButton" onClick={() => startButtonHandler()} data-testid={"lookForPlayers"}>
       {buttonTitle}
     </button>
   );

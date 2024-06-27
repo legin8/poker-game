@@ -5,9 +5,9 @@ export const GameControls = () => {
   const { gameMessage, isSwapTurn, swapHandler } = useGameContext();
 
   return (
-    <div className="gameControls">
+    <div className="gameControls" >
       {gameMessage}
-      {isSwapTurn && <button onClick={() => swapHandler()}>Swap</button>}
+      {isSwapTurn && <button onClick={() => swapHandler()} data-testid={"gcButton"}>Swap</button>}
     </div>
   );
 };

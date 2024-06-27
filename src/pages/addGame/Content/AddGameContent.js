@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { createPokerGame } from "../../../poker/firebase";
-import { useGameContext } from "../../../poker/Context";
 import "./AddGameContent.css";
 import { useAuthContext } from "../../../poker/UserAuthContext";
 
@@ -29,6 +28,7 @@ export const AddGameContent = () => {
         type="text"
         placeholder="My new game"
         onChange={(v) => (gameName = v.target.value)}
+        data-testid={"addgamecontentText"}
       />
       <input
         type="button"

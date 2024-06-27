@@ -13,7 +13,7 @@ export const NavBar = () => {
   }, [userID]);
 
   return (
-    <div className="navBar">
+    <div className="navBar" >
       <Link to={"/home"} className="linkButton">
         Home
       </Link>
