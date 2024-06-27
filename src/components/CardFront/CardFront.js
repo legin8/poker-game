@@ -1,11 +1,9 @@
 import "./CardFront.css";
 import pic from "./card image.jpg";
 import { useState } from "react";
-import { useGameContext } from "../../poker/Context";
 
-export const CardFront = ({ number, suit }) => {
+export const CardFront = ({ number, suit, cardsToSwap, setCardsToSwap }) => {
   const [isSelected, setIsSelected] = useState(false);
-  const { cardsToSwap } = useGameContext();
   let cardNumber = number;
 
   if (number === 11) cardNumber = "J";
@@ -17,8 +15,10 @@ export const CardFront = ({ number, suit }) => {
 
     // runs if you can add a card.
     if (cardsToSwap.length < 3 && !isSelected) {
+      console.log(cardsToSwap);
       setIsSelected(true);
       cardsToSwap.push(card);
+      console.log(cardsToSwap);
     }
 
     // runs if you unselect a card.

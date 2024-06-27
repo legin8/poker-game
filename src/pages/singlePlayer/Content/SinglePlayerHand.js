@@ -1,9 +1,7 @@
 import { CardFront } from "../../../components/CardFront/CardFront";
-import "./PlayerHand.css";
-import { useGameContext } from "../../../poker/Context";
+import "./SinglePlayerHand.css";
 
-export const PlayerHand = () => {
-  const { cards, cardsToSwap } = useGameContext();
+export const SinglePlayerHand = ({ cards, cardsToSwap, setCardsToSwap }) => {
   return (
     <div className="playerHand">
       {cards.map((card, k) => {
@@ -13,6 +11,7 @@ export const PlayerHand = () => {
             number={card.number}
             suit={card.suit}
             cardsToSwap={cardsToSwap}
+            setCardsToSwap={setCardsToSwap}
           />
         );
       })}

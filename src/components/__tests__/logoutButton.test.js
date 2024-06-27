@@ -6,7 +6,7 @@ jest.mock("../../poker/firebase");
 
 test("logout button", () => {
   render(
-    <AuthContext.Provider value={{setUserID: jest.fn()}}>
+    <AuthContext.Provider value={{ setUserID: jest.fn() }}>
       <LogoutButton />
     </AuthContext.Provider>,
   );

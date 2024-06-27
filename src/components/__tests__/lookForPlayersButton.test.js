@@ -10,10 +10,12 @@ const userID = "sssssssssssssssssssssssssss";
 
 test("look for players button", () => {
   render(
-    <AuthContext.Provider value={{userID: userID, setGameDocID: jest.fn()}}>
+    <AuthContext.Provider value={{ userID: userID, setGameDocID: jest.fn() }}>
       <LookForPlayersButton docID={docID} />
     </AuthContext.Provider>,
   );
 
-  expect(screen.getByTestId("lookForPlayers")).toHaveTextContent("Look For Players");
+  expect(screen.getByTestId("lookForPlayers")).toHaveTextContent(
+    "Look For Players",
+  );
 });

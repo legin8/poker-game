@@ -56,7 +56,6 @@ export const PokerContext = ({ children }) => {
       }
 
       if (gameData.phase === STATE_OF_PLAY.swapCards) {
-        console.log("start of swap Cards");
         removeCards(deck, gameData.usedCards);
         setGameMessage(<p>Pick upto 3 cards to swap</p>);
         setIsSwapTurn(true);
@@ -64,7 +63,6 @@ export const PokerContext = ({ children }) => {
     }
 
     if (gameData.phase === STATE_OF_PLAY.gameOver) {
-      console.log("start of game over");
       const playerNumber = gameData.scores.findIndex(
         (e) => e.player === userID,
       );
@@ -83,22 +81,22 @@ export const PokerContext = ({ children }) => {
           <div>
             <p>Draw.</p>
             <GameOverButton />
-          </div>
-      );
+          </div>,
+        );
       } else if (scores[0].player === userID) {
         setGameMessage(
           <div>
             <p>You Wins.</p>
             <GameOverButton />
-          </div>
-      );
+          </div>,
+        );
       } else {
         setGameMessage(
           <div>
             <p>{`You Lose, Player ${playerNumber + 1} Wins.`}</p>
             <GameOverButton />
-          </div>
-      );
+          </div>,
+        );
       }
     }
   };

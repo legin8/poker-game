@@ -13,6 +13,6 @@ test("add game content", () => {
   );
   const textInput = screen.getByTestId("addgamecontentText");
   expect(textInput).toHaveValue("");
-  fireEvent.change(textInput, { target: { value: "testing"} });
+  fireEvent.change(textInput, { target: { value: "testing" } });
   expect(textInput).toHaveValue("testing");
 });

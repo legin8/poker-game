@@ -5,9 +5,15 @@ import { render, screen } from "@testing-library/react";
 test("Game controls", () => {
   expect(true).toBe(true);
   render(
-    <GameContext.Provider value={{ gameMessage: "loading", isSwapTurn: true, swapHandler: jest.fn() }} >
+    <GameContext.Provider
+      value={{
+        gameMessage: "loading",
+        isSwapTurn: true,
+        swapHandler: jest.fn(),
+      }}
+    >
       <GameControls />
-    </GameContext.Provider>
+    </GameContext.Provider>,
   );
 
   expect(screen.getByTestId("gcButton")).toBeInTheDocument();

@@ -10,6 +10,6 @@ export const GameOverButton = () => {
       players: [],
     });
     navigate("/home");
-  }
-  return <button onClick={() => gameOverHandler()}>Home</button>
+  };
+  return <button onClick={() => gameOverHandler()}>Home</button>;
 };

@@ -6,6 +6,7 @@ import { AddGamePage } from "../pages/addGame/AddGamePage";
 import { JoinGamePage } from "../pages/joinGame/JoinGamePage";
 import { LobbyPage } from "../pages/lobby/LobbyPage";
 import { GamePage } from "../pages/game/GamePage";
+import { SinglePlayer } from "../pages/singlePlayer/SinglePlayer";
 
 export const router = createBrowserRouter([
   {
@@ -35,5 +36,9 @@ export const router = createBrowserRouter([
   {
     path: "/game",
     element: <GamePage />,
+  },
+  {
+    path: "/singleplayer",
+    element: <SinglePlayer />,
   },
 ]);

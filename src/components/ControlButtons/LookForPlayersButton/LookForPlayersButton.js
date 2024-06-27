@@ -26,7 +26,11 @@ export const LookForPlayersButton = ({ docID }) => {
   };
 
   return (
-    <button className="startButton" onClick={() => startButtonHandler()} data-testid={"lookForPlayers"}>
+    <button
+      className="startButton"
+      onClick={() => startButtonHandler()}
+      data-testid={"lookForPlayers"}
+    >
       {buttonTitle}
     </button>
   );
