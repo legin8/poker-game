@@ -10,8 +10,10 @@ import {
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+let key = process.env.REACT_APP_FIRE_BASE_API_KEY;
+console.log(key);
 const firebaseConfig = {
-  apiKey: "AIzaSyASMWFzjzFl5mIT9uD2waiahBzU8bBSI7Y",
+  apiKey: key,
   authDomain: "nem-poker-app.firebaseapp.com",
   projectId: "nem-poker-app",
   storageBucket: "nem-poker-app.appspot.com",
